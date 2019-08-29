@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://tianxiangh.site">
-  <title>HTX的博客</title>
+  <title>第三人称的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="安全小白，多多指教">
 <meta name="keywords" content="安全,极客">
 <meta property="og:type" content="website">
-<meta property="og:title" content="HTX的博客">
+<meta property="og:title" content="第三人称的技术博客">
 <meta property="og:url" content="http://tianxiangh.site/index.html">
-<meta property="og:site_name" content="HTX的博客">
+<meta property="og:site_name" content="第三人称的技术博客">
 <meta property="og:description" content="安全小白，多多指教">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTX的博客">
+<meta name="twitter:title" content="第三人称的技术博客">
 <meta name="twitter:description" content="安全小白，多多指教">
   
-    <link rel="alternative" href="/atom.xml" title="HTX的博客" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="第三人称的技术博客" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -50,7 +50,7 @@
 			<img src="/assets/img/icon.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">HTX</a></h1>
+		  <h1 class="header-author"><a href="/">Sigma</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">偷得浮生半日闲</p>
@@ -102,7 +102,7 @@
 				<img src="/assets/img/icon.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">HTX</h1>
+			  <h1 class="header-author js-header-author">Sigma</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>偷得浮生半日闲<i class="icon icon-quo-right"></i></p>
@@ -155,7 +155,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/创建AD域/">图片问题</a>
+      <a class="article-title" href="/2019/08/29/创建AD域/">AD域</a>
     </h1>
   
 
@@ -171,19 +171,8 @@
         <h2 id="Windows-server-2012-创建-AD-域，创建域控，创建新用户"><a href="#Windows-server-2012-创建-AD-域，创建域控，创建新用户" class="headerlink" title="Windows server 2012 创建 AD 域，创建域控，创建新用户"></a>Windows server 2012 创建 AD 域，创建域控，创建新用户</h2><h3 id="实验环境：两台-Windows-server-2012-r2-虚拟机"><a href="#实验环境：两台-Windows-server-2012-r2-虚拟机" class="headerlink" title="实验环境：两台 Windows server 2012 r2 虚拟机"></a>实验环境：两台 Windows server 2012 r2 虚拟机</h3><h3 id="实验需求："><a href="#实验需求：" class="headerlink" title="实验需求："></a>实验需求：</h3><ol>
 <li>创建 AD 域 </li>
 <li>提升服务器为域控制器（DC）</li>
-<li>将第二台服务器添加到 AD 域</li>
-</ol>
-<h3 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a>实验步骤：</h3><p>==1. 创建 AD 域：==<br><img src="/.site//ad%201.jpg" alt="ad 1"><br><img src="/.site//ad%202.jpg" alt="ad 2"><br><img src="/.site//ad%203.jpg" alt="ad 3"><br><img src="/.site//ad%204.jpg" alt="ad 4"><br><img src="/.site//ad6.jpg" alt="ad6"><br><img src="/.site//ad%207.jpg" alt="ad 7"><br><img src="/.site//ad%205.jpg" alt="ad 5"><br>==2. 提升服务器为域控制器==<br><img src="/.site//ad%208.jpg" alt="ad 8"><br><img src="/.site//ad%209.jpg" alt="ad 9"><br><img src="/.site//ad%2010.jpg" alt="ad 10"><br><img src="/.site//ad%2011.jpg" alt="ad 11"><br><img src="/.site//ad%2012.jpg" alt="ad 12"><br><img src="/.site//ad%2013.jpg" alt="ad 13"><br><img src="/.site//ad%2014.jpg" alt="ad 14"><br><img src="/.site//ad%2015.jpg" alt="ad 15"></p>
-<ul>
-<li>先决条件检查没问题后直接安装<br><img src="/.site//ad%2016.jpg" alt="ad 16"></li>
-<li>安装之后会重启，重启之后，已经切换到 htx 域了<br><img src="/.site//ad%2017.jpg" alt="ad 17"></li>
-</ul>
-<p>==3. 将第二台服务器添加到 AD 域==<br>首先要两台服务器要ping 通，先都改下 IP 地址改在同一网段下，然后把 DNS 改为域控制器的 IP 地址<br><img src="/.site//ad20.jpg" alt="ad20"><br><img src="/.site//ad%2021.jpg" alt="ad 21"><br>然后测试能否 ping 通，结果我测试ping不通<br>==两台虚拟机 ping 不通，解决方法：==</p>
-<ul>
-<li>先把两台虚拟机都设置为桥接模式</li>
-<li>然后 ：控制面板-&gt;管理工具-&gt;高级安全 Windows 防火墙-&gt;入站规则：文件和打印机共享(回显请求 - ICMPv4-In) 启用该规则即可。<br><img src="/.site//%E9%98%B2%E7%81%AB%E5%A2%99.jpg" alt="防火墙"><br><img src="/.site//%E6%94%B9%E5%85%A5%E7%AB%99%E8%A7%84%E5%88%99.jpg" alt="改入站规则"><br>之后发现还是 ping 不通，ipconfig 查询 ip<br><img src="/.site//%E9%94%99%E8%AF%AF.jpg" alt="错误"><br>发现 ip 地址没配置好，更改适配器选项，先禁用，后启用，就 ok 啦<br><img src="/.site//asd.jpg" alt="asd"><br>继续将第二台服务器添加到 AD 域：<br><img src="/.site//%E5%88%9B%E5%BB%BA%E5%9F%9F%E7%94%A8%E6%88%B71.jpg" alt="创建域用户1"><br><img src="/.site//%E5%88%9B%E5%BB%BA2.jpg" alt="创建2"><br><img src="/.site//%E5%88%9B%E5%BB%BA3.jpg" alt="创建3"><br><img src="/.site//%E5%88%9B%E5%BB%BA4.jpg" alt="创建4"><br><img src="/.site//%E5%88%9B%E5%BB%BA5.jpg" alt="创建5"><br>试验完成</li>
-</ul>
-
+<li>将第二台服务器添加到 AD 域</li></ol>
+        
       
 
       
@@ -191,6 +180,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -298,7 +298,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 HTX
+    		&copy; 2019 Sigma
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -319,7 +319,7 @@
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
-		showTags: false
+		showTags: true
 	}
 </script>
 
@@ -371,6 +371,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
