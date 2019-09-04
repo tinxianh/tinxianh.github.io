@@ -6,30 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://tianxiangh.site">
-  <title>AD域 | 第三人称的技术博客</title>
+  <title>无问 | 第三人称的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Windows server 2012 创建 AD 域，创建域控，创建新用户实验环境：两台 Windows server 2012 r2 虚拟机实验需求： 创建 AD 域  提升服务器为域控制器（DC） 将第二台服务器添加到 AD 域">
-<meta name="keywords" content="Windows">
+  <meta name="description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
+<meta name="keywords" content="随笔,好歌推荐">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AD域">
-<meta property="og:url" content="http://tianxiangh.site/2019/08/29/创建AD域/index.html">
+<meta property="og:title" content="无问">
+<meta property="og:url" content="http://tianxiangh.site/2019/08/29/无问/index.html">
 <meta property="og:site_name" content="第三人称的技术博客">
-<meta property="og:description" content="Windows server 2012 创建 AD 域，创建域控，创建新用户实验环境：两台 Windows server 2012 r2 虚拟机实验需求： 创建 AD 域  提升服务器为域控制器（DC） 将第二台服务器添加到 AD 域">
+<meta property="og:description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E9%98%B2%E7%81%AB%E5%A2%99.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E6%94%B9%E5%85%A5%E7%AB%99%E8%A7%84%E5%88%99.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E9%94%99%E8%AF%AF.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//asd.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E5%88%9B%E5%BB%BA%E5%9F%9F%E7%94%A8%E6%88%B71.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E5%88%9B%E5%BB%BA2.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E5%88%9B%E5%BB%BA3.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E5%88%9B%E5%BB%BA4.jpg">
-<meta property="og:image" content="http://tianxiangh.site/.site//%E5%88%9B%E5%BB%BA5.jpg">
-<meta property="og:updated_time" content="2019-09-04T07:39:29.610Z">
+<meta property="og:updated_time" content="2019-08-30T02:02:51.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AD域">
-<meta name="twitter:description" content="Windows server 2012 创建 AD 域，创建域控，创建新用户实验环境：两台 Windows server 2012 r2 虚拟机实验需求： 创建 AD 域  提升服务器为域控制器（DC） 将第二台服务器添加到 AD 域">
-<meta name="twitter:image" content="http://tianxiangh.site/.site//%E9%98%B2%E7%81%AB%E5%A2%99.jpg">
+<meta name="twitter:title" content="无问">
+<meta name="twitter:description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
   
     <link rel="alternative" href="/atom.xml" title="第三人称的技术博客" type="application/atom+xml">
   
@@ -157,46 +147,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-创建AD域" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-无问" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      AD域
+      无问
     </h1>
   
 
         
-        <a href="/2019/08/29/创建AD域/" class="archive-article-date">
-  	<time datetime="2019-08-29T12:30:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+        <a href="/2019/08/29/无问/" class="archive-article-date">
+  	<time datetime="2019-08-29T07:15:14.243Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Windows-server-2012-创建-AD-域，创建域控，创建新用户"><a href="#Windows-server-2012-创建-AD-域，创建域控，创建新用户" class="headerlink" title="Windows server 2012 创建 AD 域，创建域控，创建新用户"></a>Windows server 2012 创建 AD 域，创建域控，创建新用户</h2><h3 id="实验环境：两台-Windows-server-2012-r2-虚拟机"><a href="#实验环境：两台-Windows-server-2012-r2-虚拟机" class="headerlink" title="实验环境：两台 Windows server 2012 r2 虚拟机"></a>实验环境：两台 Windows server 2012 r2 虚拟机</h3><h3 id="实验需求："><a href="#实验需求：" class="headerlink" title="实验需求："></a>实验需求：</h3><ol>
-<li>创建 AD 域 </li>
-<li>提升服务器为域控制器（DC）</li>
-<li>将第二台服务器添加到 AD 域<a id="more"></a>
-<h3 id="实验步骤："><a href="#实验步骤：" class="headerlink" title="实验步骤："></a>实验步骤：</h3></li>
-<li>创建 AD 域<br>![](创建AD域/ad 1.jpg)<br>![](创建AD域/ad 2.jpg)<br>![](创建AD域/ad 3.jpg)<br>![](创建AD域/ad 4.jpg)<br>![](创建AD域/ad 6.jpg)<br>![](创建AD域/ad 7.jpg)<br>![](创建AD域/ad 5.jpg)</li>
-<li>提升服务器为域控制器<br>![](创建AD域/ad 8.jpg)<br>![](创建AD域/ad 9.jpg)<br>![](创建AD域/ad 10.jpg)<br>![](创建AD域/ad 11.jpg)<br>![](创建AD域/ad 12.jpg)<br>![](创建AD域/ad 13.jpg)<br>![](创建AD域/ad 14.jpg)<br>![](创建AD域/ad 15.jpg)</li>
-</ol>
-<ul>
-<li>先决条件检查没问题后直接安装<br>![](创建AD域/ad 16.jpg)</li>
-<li>安装之后会重启，重启之后，已经切换到 htx 域了<br>![](创建AD域/ad 17.jpg)</li>
-</ul>
-<ol start="3">
-<li>将第二台服务器添加到 AD 域<br>首先要两台服务器要ping 通，先都改下 IP 地址改在同一网段下，然后把 DNS 改为域控制器的 IP 地址<br>![](创建AD域/ad 20.jpg)<br>![](创建AD域/ad 21.jpg)<br>然后测试能否 ping 通，结果我测试ping不通</li>
-</ol>
-<p>两台虚拟机 ping 不通，解决方法：</p>
-<ul>
-<li>先把两台虚拟机都设置为桥接模式</li>
-<li>然后 ：控制面板-&gt;管理工具-&gt;高级安全 Windows 防火墙-&gt;入站规则：文件和打印机共享(回显请求 - ICMPv4-In) 启用该规则即可。<br><img src="/.site//%E9%98%B2%E7%81%AB%E5%A2%99.jpg" alt="防火墙"><br><img src="/.site//%E6%94%B9%E5%85%A5%E7%AB%99%E8%A7%84%E5%88%99.jpg" alt="改入站规则"><br>之后发现还是 ping 不通，ipconfig 查询 ip<br><img src="/.site//%E9%94%99%E8%AF%AF.jpg" alt="错误"><br>发现 ip 地址没配置好，更改适配器选项，先禁用，后启用，就 ok 啦<br><img src="/.site//asd.jpg" alt="asd"><br>继续将第二台服务器添加到 AD 域：<br><img src="/.site//%E5%88%9B%E5%BB%BA%E5%9F%9F%E7%94%A8%E6%88%B71.jpg" alt="创建域用户1"><br><img src="/.site//%E5%88%9B%E5%BB%BA2.jpg" alt="创建2"><br><img src="/.site//%E5%88%9B%E5%BB%BA3.jpg" alt="创建3"><br><img src="/.site//%E5%88%9B%E5%BB%BA4.jpg" alt="创建4"><br><img src="/.site//%E5%88%9B%E5%BB%BA5.jpg" alt="创建5"><br>试验完成</li>
-</ul>
+        <p>你问风为什么托着候鸟飞翔<br>却又吹的让他慌张<br>你问雨为什么滋养万物生长<br>却也湿透他的衣裳</p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=525278524&auto=0&height=66"></iframe>
+<br>
+
 
       
 
@@ -210,7 +184,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
         		</li>
       		
 		</ul>
@@ -266,7 +244,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://tianxiangh.site/2019/08/29/创建AD域/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://tianxiangh.site/2019/08/29/无问/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,20 +258,15 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/04/IP和TCP抓包分析实验/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/29/创建AD域/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          IP和TCP抓包分析实验
+          AD域
         
       </div>
     </a>
   
-  
-    <a href="/2019/08/29/无问/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">无问</div>
-      <i class="icon-circle-right"></i>
-    </a>
   
 </nav>
 
