@@ -6,23 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Telnet配置实验 | 第三人称</title>
+  <title>Vlan和Trunk实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Telnet 配置实验实验拓扑">
+  <meta name="description" content="Vlan 和 Trunk实验实验拓扑">
 <meta name="keywords" content="H3CNE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Telnet配置实验">
-<meta property="og:url" content="https://www.tianxiangh.site/2019/09/06/Telnet配置实验/index.html">
+<meta property="og:title" content="Vlan和Trunk实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="Telnet 配置实验实验拓扑">
+<meta property="og:description" content="Vlan 和 Trunk实验实验拓扑">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://www.tianxiangh.site/2019/09/06/Telnet配置实验/%E6%8B%93%E6%89%91.jpg">
-<meta property="og:image" content="https://www.tianxiangh.site/2019/09/06/Telnet配置实验/1.jpg">
-<meta property="og:updated_time" content="2019-09-08T13:42:14.929Z">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/%E6%8B%93%E6%89%91.jpg">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/1.jpg">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/2.jpg">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/4.jpg">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/3.jpg">
+<meta property="og:updated_time" content="2019-09-08T14:10:26.341Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Telnet配置实验">
-<meta name="twitter:description" content="Telnet 配置实验实验拓扑">
-<meta name="twitter:image" content="https://www.tianxiangh.site/2019/09/06/Telnet配置实验/%E6%8B%93%E6%89%91.jpg">
+<meta name="twitter:title" content="Vlan和Trunk实验">
+<meta name="twitter:description" content="Vlan 和 Trunk实验实验拓扑">
+<meta name="twitter:image" content="https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/%E6%8B%93%E6%89%91.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -156,14 +159,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Telnet配置实验" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Vlan和Trunk实验" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Telnet配置实验
+      Vlan和Trunk实验
     </h1>
   
 
@@ -174,48 +177,64 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/09/06/Telnet配置实验/" class="archive-article-date">
-  	<time datetime="2019-09-06T08:14:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+<a href="/2019/09/08/Vlan和Trunk实验/" class="archive-article-date">
+  	<time datetime="2019-09-08T11:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Telnet-配置实验"><a href="#Telnet-配置实验" class="headerlink" title="Telnet 配置实验"></a>Telnet 配置实验</h2><h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/06/Telnet配置实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+        <h2 id="Vlan-和-Trunk实验"><a href="#Vlan-和-Trunk实验" class="headerlink" title="Vlan 和 Trunk实验"></a>Vlan 和 Trunk实验</h2><h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/%E6%8B%93%E6%89%91.jpg" alt></p>
 <a id="more"></a>
 
 <h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
-<li>按照图示连接到真机，并配置IP地址（真机IP地址配置到VirtualBox Host-Only Ethernet Adapter网卡）</li>
-<li>在R1上开启Telnet服务，创建用户<code>htx</code>，密码<code>123456</code>用于身份验证</li>
-<li>在真机上使用S-CRT通过Telnet登录R1</li>
+<li>按图示为PC配置IP地址</li>
+<li>SW1 和 SW2 上分别创建 vlan10 和 vlan20，要求 PC1和 PC3 属于vlan10，PC2 和 PC4 属于 vlan20</li>
+<li>SW1 和 SW2 相连的接口配置为 trunk 类型，允许 vlan10 和 vlan20通过</li>
+<li>测试效果，同一vlan的PC可以互通，不同vlan的PC无法互通</li>
 </ol>
 <h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li><p>配置 ip 略</p>
-</li>
-<li><p>R1上开启 Telnet 服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[r1]telnet server enable</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>R1上创建用户“htx”，密码“123456”用于 Telnet 身份验证</p>
-</li>
+<li>配置 PC IP略</li>
+<li>配置 sw1</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[r1]local-user htx class manage</span><br><span class="line">[r1-luser-manage-htx]password simple 123456</span><br><span class="line">[r1-luser-manage-htx]service-type telnet</span><br><span class="line">[r1-luser-manage-htx]authorization-attribute user-role level-15</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 华三默认接口类型为 access</span><br><span class="line">[SW1]vlan 10     # 创建vlan10</span><br><span class="line">[SW1-vlan10]port g1/0/1  # 把g1/0/1加入到vlan10 除此之外还可以进入接口视图，port access vlan 10 </span><br><span class="line">[SW1-vlan10]vlan 20</span><br><span class="line">[SW1-vlan20]port g1/0/2</span><br><span class="line"></span><br><span class="line">[SW1]interface g1/0/3</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port link-type trunk      # 接口类型改为 trunk</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port trunk permit vlan 10 20  # 放行 vlan10 20</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置 sw2</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[SW2]vlan 10</span><br><span class="line">[SW2-vlan10]port g1/0/1</span><br><span class="line">[SW2-vlan10]vlan 20</span><br><span class="line">[SW2-vlan20]port g1/0/2</span><br><span class="line"></span><br><span class="line">[SW2]interface g1/0/3</span><br><span class="line">[SW2-GigabitEthernet1/0/3]port link-type trunk </span><br><span class="line">[SW2-GigabitEthernet1/0/3]port trunk permit vlan 10 20</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>在 vty 终端视图下配置 Telnet 验证模式为 AAA 验证，权限为 Level-15</li>
+<li>测试结果</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[r1]user-interface vty 0 4</span><br><span class="line">[r1-line-vty0-4]authentication-mode scheme </span><br><span class="line">[r1-line-vty0-4]user-role level-15</span><br></pre></td></tr></table></figure>
-
-<ol start="5">
-<li>真机上使用 CRT 通过 Telnet 登录 R1,_打开CRT，点击快速连接，协议选择 Telnet，主机名为<code>1.1.1.1</code>，端口默认不变，然后点击连接,然后输入用户名，密码登陆成功</li>
-</ol>
-<p><img src="//www.tianxiangh.site/2019/09/06/Telnet配置实验/1.jpg" alt="1"></p>
+<ul>
+<li>pc1 ping pc2</li>
+</ul>
+<p><img src="//www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/1.jpg" alt></p>
+<ul>
+<li>pc1 ping pc3</li>
+</ul>
+<p><img src="//www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/2.jpg" alt></p>
+<ul>
+<li>pc2 ping pc3</li>
+</ul>
+<p><img src="//www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/4.jpg" alt></p>
+<ul>
+<li>pc2 ping pc4</li>
+</ul>
+<p><img src="//www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/3.jpg" alt></p>
 
       
 
       
     </div>
     <div class="article-info article-info-index">
+      
+        <div class="article-pop-out tagcloud">
+          <i class="icon-tuding"></i>
+          <a class="article-tag-list-link color3">置顶</a>
+        </div>
       
       
 	<div class="article-tag tagcloud">
@@ -279,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/09/06/Telnet配置实验/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/09/08/Vlan和Trunk实验/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -293,18 +312,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/08/Vlan和Trunk实验/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/08/H3C配置管理实验/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Vlan和Trunk实验
+          H3C配置管理实验
         
       </div>
     </a>
   
   
-    <a href="/2019/09/04/美好的事物/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">美好的事物</div>
+    <a href="/2019/09/06/Telnet配置实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Telnet配置实验</div>
       <i class="icon-circle-right"></i>
     </a>
   
