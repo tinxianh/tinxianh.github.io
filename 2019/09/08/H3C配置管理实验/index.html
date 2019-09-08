@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: 好歌推荐 | 第三人称</title>
+  <title>H3C配置管理实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/好歌推荐/index.html">
+  <meta name="description" content="H3C配置管理实验实验拓扑">
+<meta name="keywords" content="H3CNE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="H3C配置管理实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="H3C配置管理实验实验拓扑">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/%E6%8B%93%E6%89%91.jpg">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/1.png">
+<meta property="og:image" content="https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/3.png">
+<meta property="og:updated_time" content="2019-09-08T14:00:05.371Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="H3C配置管理实验">
+<meta name="twitter:description" content="H3C配置管理实验实验拓扑">
+<meta name="twitter:image" content="https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/%E6%8B%93%E6%89%91.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -152,112 +157,200 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-H3C配置管理实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/04/美好的事物/" class="archive-article-date">
-  	<time datetime="2019-09-04T11:49:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/04/美好的事物/">美好的事物</a>
+    <h1 class="article-title" itemprop="name">
+      H3C配置管理实验
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/09/08/H3C配置管理实验/" class="archive-article-date">
+  	<time datetime="2019-09-08T13:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="H3C配置管理实验"><a href="#H3C配置管理实验" class="headerlink" title="H3C配置管理实验"></a>H3C配置管理实验</h2><h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/08/H3C配置管理实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+<a id="more"></a>
+
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示连接到真机，并配置IP地址（真机IP地址配置到VirtualBox Host-Only Ethernet Adapter网卡）</li>
+<li>R1保存当前配置</li>
+<li>在R1上开启FTP服务</li>
+<li>使用真机访问FTP服务，把R1的配置文件拷贝到本地</li>
+<li>在R1上清空配置，重启R1，确认已配置为空配状态</li>
+<li>再次在R1开启FTP服务，并把真机拷贝的配置文件还原到路由器</li>
+<li>更改R1的启动配置文件名</li>
+<li>再次重启R1，确认配置已还原</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li>配置接口 ip 略</li>
+<li>R1保存当前配置，并确认</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R1]save</span><br><span class="line">The current configuration will be written to the device. Are you sure? [Y/N]:y</span><br><span class="line">Please input the file name(*.cfg)[flash:/startup.cfg]</span><br><span class="line">(To leave the existing filename unchanged, press the enter key):</span><br><span class="line">Validating file. Please wait...</span><br><span class="line">Configuration is saved to device successfully.</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>R1上开启FTP服务，创建用户<code>htx</code>，密码<code>123</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R1]ftp server enable </span><br><span class="line">[R1]local-user wangdaye class manage </span><br><span class="line">New local user added.</span><br><span class="line">[R1-luser-manage-wangdaye]password simple 123456</span><br><span class="line">[R1-luser-manage-wangdaye]authorization-attribute user-role level-15</span><br><span class="line">[R1-luser-manage-wangdaye]service-type ftp</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用真机访问FTP服务，备份R1的配置文件,输入用户名和密码,复制R1的配置文件</li>
+</ol>
+<p><img src="//www.tianxiangh.site/2019/09/08/H3C配置管理实验/1.png" alt></p>
+<p><img src="//www.tianxiangh.site/2019/09/08/H3C配置管理实验/3.png" alt></p>
+<ol start="5">
+<li>在R1上清空配置</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;reset saved-configuration </span><br><span class="line">The saved configuration file will be erased. Are you sure? [Y/N]:y</span><br><span class="line">Configuration file in flash: is being cleared.  </span><br><span class="line">Please wait ...</span><br><span class="line">Configuration file is cleared.</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>重启R1，查看R1配置，发现R1的配置已经变成空配状态</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;H3C&gt;display current-configuration </span><br><span class="line">#</span><br><span class="line"> version 7.1.075, Alpha 7571</span><br><span class="line">#</span><br><span class="line"> sysname H3C</span><br><span class="line">#</span><br><span class="line">system-working-mode standard</span><br><span class="line">xbar load-single</span><br><span class="line">password-recovery enable</span><br><span class="line">lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>再次把R1的g0/0口配置IP地址，并开启FTP,把真机上的配置文件还原到路由器,(可以通过U盘或者通过FTP服务把配置文件传到路由器)更改R1的启动配置文件名</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;H3C&gt;startup saved-configuration startup.cfg </span><br><span class="line">Please wait...... Done.</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>重启R1，确认配置已经还原到清空前的状态</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;R1&gt;display cu</span><br><span class="line">&lt;R1&gt;display current-configuration </span><br><span class="line">#</span><br><span class="line"> version 7.1.075, Alpha 7571</span><br><span class="line">#</span><br><span class="line"> sysname R1</span><br><span class="line">#</span><br><span class="line"> system-working-mode standard</span><br><span class="line"> xbar load-single</span><br><span class="line"> password-recovery enable</span><br><span class="line"> lpu-type f-series</span><br><span class="line">#</span><br><span class="line">vlan 1</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">房东的猫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/09/08/H3C配置管理实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/08/29/无问/" class="archive-article-date">
-  	<time datetime="2019-08-29T07:15:14.243Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/06/Telnet配置实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Telnet配置实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/29/无问/">无问</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -291,9 +384,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
