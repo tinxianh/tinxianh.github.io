@@ -255,8 +255,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="链路聚合实验"><a href="#链路聚合实验" class="headerlink" title="链路聚合实验"></a>链路聚合实验</h2>
-        
+        <a id="more"></a>
+<h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置PC3和PC4的IP地址</li>
+<li>在SW1和SW2的两条直连链路上配置链路聚合，实现链路冗余，并可以增加传输带宽</li>
+<li>SW1和SW2之间的直连链路要配置为Trunk类型，允许所有vlan通过</li>
+<li>中断SW1和SW2之间的一条直连链路，测试PC3和PC4是否仍然能够继续访问</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li>配置 IP 地址略</li>
+<li>配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Trunk类型（ps: 在有需要配置链路聚合的时候，应该在所有操作之前先配置链路聚合）</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Bridge-Aggregation 1</span><br><span class="line"></span><br><span class="line">[SW1]interface g1/0/1</span><br><span class="line">[SW1-GigabitEthernet1/0/1]port link-aggregation group 1</span><br><span class="line"></span><br><span class="line">[SW1]interface g1/0/2</span><br><span class="line">[SW1-GigabitEthernet1/0/2]port link-aggregation group 1</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>查看链路聚合状态，发现已经成功运行<code>display link-aggregation verbose</code></li>
+</ol>
+<p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/1.jpg" alt></p>
+<ol start="4">
+<li>对 sw2 进行相同操作</li>
+<li>配置SW1和SW2之间的直连链路为Trunk类型，允许所有vlan通过(ps: 要在聚合接口里配置，sw2 相同配置)</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Bridge-Aggregation 1</span><br><span class="line">[SW1-Bridge-Aggregation1]port link-type trunk</span><br><span class="line">Configuring GigabitEthernet1/0/1 done.</span><br><span class="line">Configuring GigabitEthernet1/0/2 done.</span><br><span class="line">[SW1-Bridge-Aggregation1]port trunk permit vlan all</span><br><span class="line">Configuring GigabitEthernet1/0/1 done.</span><br><span class="line">Configuring GigabitEthernet1/0/2 done.</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>使用<code>shutdown</code>命令关闭接口g1/0/1,发现PC3和PC4是否仍然能够继续访问</li>
+</ol>
+<p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/2.jpg" alt></p>
+
       
 
       
@@ -330,8 +357,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="STP实验"><a href="#STP实验" class="headerlink" title="STP实验"></a>STP实验</h2>
-        
+        <a id="more"></a>
+
+<h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/09/STP实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>开启所有设备，等待STP收敛后观察STP状态</li>
+<li>使SW4成为根网桥</li>
+<li>使闭塞端口出现在SW2上</li>
+<li>把SW1上连接的PC的端口配置为边缘端口</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p><strong>等待STP收敛后，查看STP运行状态，找出根网桥，闭塞端口</strong></p>
+<p><em>步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[SW1]display stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line">Bridge ID           : 32768.7aef-e4ea-0100</span><br><span class="line">Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line">Root ID/ERPC        : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RegRoot ID/IRPC     : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RootPort ID         : 0.0</span><br><span class="line">BPDU-Protection     : Disabled</span><br><span class="line">Bridge Config-</span><br><span class="line">Digest-Snooping     : Disabled</span><br><span class="line">TC or TCN received  : 7</span><br><span class="line">Time since last TC  : 0 days 0h:0m:40s</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤2：根据STP计算机制，所有链路开销一致，闭塞端口应该会出现在SW4上。在SW4上查看端口状态，确认SW4的g1/0/2被闭塞</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW4]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使SW4成为新的根网桥</strong></p>
+<p>　　<em>分析：要想使SW4成为根网桥，最好的办法就是让SW4的优先级成为全网最小。默认优先级都为32768，必须是4096的倍数，只要把SW4的优先级改成比32768小就可以了</em></p>
+<p><em>步骤1：修改SW4的优先级为4096</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[sw4]stp priority 4096</span><br><span class="line">[sw4]%Sep 10 13:00:24:045 2019 sw4 STP/6/STP_DETECTED_TC: Instance 0&apos;s port GigabitEthernet1/0/2 detected a topology change.</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤2：在SW4上查看STP运行状态，发现SW4已经成为新的根网桥</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[sw4]dis stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line"> Bridge ID           : 4096.3a3d-95ce-0400</span><br><span class="line"> Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line"> Root ID/ERPC        : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RegRoot ID/IRPC     : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RootPort ID         : 0.0</span><br><span class="line"> BPDU-Protection     : Disabled</span><br><span class="line"> Bridge Config-</span><br><span class="line"> Digest-Snooping     : Disabled</span><br><span class="line"> TC or TCN received  : 6</span><br><span class="line"> Time since last TC  : 0 days 0h:1m:35s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>使闭塞端口出现在SW2上</strong></p>
+<p>　　<em>分析：SW4成为了根网桥，按照STP计算机制，闭塞端口此时应该在SW1上。要使闭塞端口到SW2上，就需要让SW2到SW1的cost比SW4到SW1更大。H3C交换机千兆口的cost默认是20，我们可以把SW2的g1/0/1接口的cost改为100</em></p>
+<p><em>步骤1：在SW2上进入g1/0/1接口的接口视图，修改stp cost为100</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW2]interface g1/0/2</span><br><span class="line">[SW2-GigabitEthernet1/0/2]stp cost 100</span><br><span class="line">[SW2-GigabitEthernet1/0/2]%Mar 21 22:16:05:399 2018 SW2 STP/6/STP_NOTIFIED_TC: Instance 0&apos;s port GigabitEthernet1/0/1 was notified a topology change.</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤2：在SW2上查看STP接口状态，发现SW2的g1/0/2接口已经成为了新的闭塞端口</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW2]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>把SW1连接PC的所有接口配置为边缘接口</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/3</span><br><span class="line">[SW4-GigabitEthernet1/0/3]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthernet1/0/3 is connected to bridges. Please use it carefully.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/4</span><br><span class="line">[SW4-GigabitEthernet1/0/4]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthe</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
       
 
       
@@ -959,6 +1025,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
@@ -968,10 +1038,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">房东的猫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
             
             <div class="clearfix"></div>
