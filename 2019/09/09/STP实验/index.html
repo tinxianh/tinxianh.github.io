@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
   <title>STP实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="实验拓扑 实验需求 开启所有设备，等待STP收敛后观察STP状态 使SW4成为根网桥 使闭塞端口出现在SW2上 把SW1上连接的PC的端口配置为边缘端口  实验过程 等待STP收敛后，查看STP运行状态，找出根网桥，闭塞端口 步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥 123456789101112[SW1">
+  <meta name="description" content="实验拓扑">
 <meta name="keywords" content="H3CNE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STP实验">
 <meta property="og:url" content="https://www.tianxiangh.site/2019/09/09/STP实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="实验拓扑 实验需求 开启所有设备，等待STP收敛后观察STP状态 使SW4成为根网桥 使闭塞端口出现在SW2上 把SW1上连接的PC的端口配置为边缘端口  实验过程 等待STP收敛后，查看STP运行状态，找出根网桥，闭塞端口 步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥 123456789101112[SW1">
+<meta property="og:description" content="实验拓扑">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.tianxiangh.site/2019/09/09/STP实验/%E6%8B%93%E6%89%91.jpg">
-<meta property="og:updated_time" content="2019-09-10T05:51:17.460Z">
+<meta property="og:updated_time" content="2019-09-10T06:01:55.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="STP实验">
-<meta name="twitter:description" content="实验拓扑 实验需求 开启所有设备，等待STP收敛后观察STP状态 使SW4成为根网桥 使闭塞端口出现在SW2上 把SW1上连接的PC的端口配置为边缘端口  实验过程 等待STP收敛后，查看STP运行状态，找出根网桥，闭塞端口 步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥 123456789101112[SW1">
+<meta name="twitter:description" content="实验拓扑">
 <meta name="twitter:image" content="https://www.tianxiangh.site/2019/09/09/STP实验/%E6%8B%93%E6%89%91.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
@@ -181,9 +181,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-
-<h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/09/STP实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><a id="more"></a>
+<p><img src="//www.tianxiangh.site/2019/09/09/STP实验/%E6%8B%93%E6%89%91.jpg" alt></p>
 <h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
 <li>开启所有设备，等待STP收敛后观察STP状态</li>
 <li>使SW4成为根网桥</li>
@@ -192,32 +191,32 @@
 </ol>
 <h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
 <li><p><strong>等待STP收敛后，查看STP运行状态，找出根网桥，闭塞端口</strong></p>
-<p><em>步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[SW1]display stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line">Bridge ID           : 32768.7aef-e4ea-0100</span><br><span class="line">Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line">Root ID/ERPC        : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RegRoot ID/IRPC     : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RootPort ID         : 0.0</span><br><span class="line">BPDU-Protection     : Disabled</span><br><span class="line">Bridge Config-</span><br><span class="line">Digest-Snooping     : Disabled</span><br><span class="line">TC or TCN received  : 7</span><br><span class="line">Time since last TC  : 0 days 0h:0m:40s</span><br></pre></td></tr></table></figure>
+<p> <em>步骤1：根据HCL模拟器的运行机制，SW1的Mac地址应该是最小的，会成为根网桥，在SW1上查看STP运行状态，确认SW1为根网桥</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[SW1]display stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line">Bridge ID           : 32768.7aef-e4ea-0100</span><br><span class="line">Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line">Root ID/ERPC        : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RegRoot ID/IRPC     : 32768.7aef-e4ea-0100, 0</span><br><span class="line">RootPort ID         : 0.0</span><br><span class="line">BPDU-Protection     : Disabled</span><br><span class="line">Bridge Config-</span><br><span class="line">Digest-Snooping     : Disabled</span><br><span class="line">TC or TCN received  : 7</span><br><span class="line">Time since last TC  : 0 days 0h:0m:40s</span><br></pre></td></tr></table></figure>
 
-<p><em>步骤2：根据STP计算机制，所有链路开销一致，闭塞端口应该会出现在SW4上。在SW4上查看端口状态，确认SW4的g1/0/2被闭塞</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW4]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
+<p> <em>步骤2：根据STP计算机制，所有链路开销一致，闭塞端口应该会出现在SW4上。在SW4上查看端口状态，确认SW4的g1/0/2被闭塞</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW4]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>使SW4成为新的根网桥</strong></p>
-<p>　　<em>分析：要想使SW4成为根网桥，最好的办法就是让SW4的优先级成为全网最小。默认优先级都为32768，必须是4096的倍数，只要把SW4的优先级改成比32768小就可以了</em></p>
-<p><em>步骤1：修改SW4的优先级为4096</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[sw4]stp priority 4096</span><br><span class="line">[sw4]%Sep 10 13:00:24:045 2019 sw4 STP/6/STP_DETECTED_TC: Instance 0&apos;s port GigabitEthernet1/0/2 detected a topology change.</span><br></pre></td></tr></table></figure>
+<p> 　　<em>分析：要想使SW4成为根网桥，最好的办法就是让SW4的优先级成为全网最小。默认优先级都为32768，必须是4096的倍数，只要把SW4的优先级改成比32768小就可以了</em></p>
+<p> <em>步骤1：修改SW4的优先级为4096</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[sw4]stp priority 4096</span><br><span class="line">[sw4]%Sep 10 13:00:24:045 2019 sw4 STP/6/STP_DETECTED_TC: Instance 0&apos;s port GigabitEthernet1/0/2 detected a topology change.</span><br></pre></td></tr></table></figure>
 
-<p><em>步骤2：在SW4上查看STP运行状态，发现SW4已经成为新的根网桥</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[sw4]dis stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line"> Bridge ID           : 4096.3a3d-95ce-0400</span><br><span class="line"> Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line"> Root ID/ERPC        : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RegRoot ID/IRPC     : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RootPort ID         : 0.0</span><br><span class="line"> BPDU-Protection     : Disabled</span><br><span class="line"> Bridge Config-</span><br><span class="line"> Digest-Snooping     : Disabled</span><br><span class="line"> TC or TCN received  : 6</span><br><span class="line"> Time since last TC  : 0 days 0h:1m:35s</span><br></pre></td></tr></table></figure>
+<p> <em>步骤2：在SW4上查看STP运行状态，发现SW4已经成为新的根网桥</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[sw4]dis stp</span><br><span class="line">-------[CIST Global Info][Mode MSTP]-------</span><br><span class="line"> Bridge ID           : 4096.3a3d-95ce-0400</span><br><span class="line"> Bridge times        : Hello 2s MaxAge 20s FwdDelay 15s MaxHops 20</span><br><span class="line"> Root ID/ERPC        : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RegRoot ID/IRPC     : 4096.3a3d-95ce-0400, 0</span><br><span class="line"> RootPort ID         : 0.0</span><br><span class="line"> BPDU-Protection     : Disabled</span><br><span class="line"> Bridge Config-</span><br><span class="line"> Digest-Snooping     : Disabled</span><br><span class="line"> TC or TCN received  : 6</span><br><span class="line"> Time since last TC  : 0 days 0h:1m:35s</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>使闭塞端口出现在SW2上</strong></p>
-<p>　　<em>分析：SW4成为了根网桥，按照STP计算机制，闭塞端口此时应该在SW1上。要使闭塞端口到SW2上，就需要让SW2到SW1的cost比SW4到SW1更大。H3C交换机千兆口的cost默认是20，我们可以把SW2的g1/0/1接口的cost改为100</em></p>
-<p><em>步骤1：在SW2上进入g1/0/1接口的接口视图，修改stp cost为100</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW2]interface g1/0/2</span><br><span class="line">[SW2-GigabitEthernet1/0/2]stp cost 100</span><br><span class="line">[SW2-GigabitEthernet1/0/2]%Mar 21 22:16:05:399 2018 SW2 STP/6/STP_NOTIFIED_TC: Instance 0&apos;s port GigabitEthernet1/0/1 was notified a topology change.</span><br></pre></td></tr></table></figure>
+<p> 　　<em>分析：SW4成为了根网桥，按照STP计算机制，闭塞端口此时应该在SW1上。要使闭塞端口到SW2上，就需要让SW2到SW1的cost比SW4到SW1更大。H3C交换机千兆口的cost默认是20，我们可以把SW2的g1/0/1接口的cost改为100</em></p>
+<p> <em>步骤1：在SW2上进入g1/0/1接口的接口视图，修改stp cost为100</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW2]interface g1/0/2</span><br><span class="line">[SW2-GigabitEthernet1/0/2]stp cost 100</span><br><span class="line">[SW2-GigabitEthernet1/0/2]%Mar 21 22:16:05:399 2018 SW2 STP/6/STP_NOTIFIED_TC: Instance 0&apos;s port GigabitEthernet1/0/1 was notified a topology change.</span><br></pre></td></tr></table></figure>
 
-<p><em>步骤2：在SW2上查看STP接口状态，发现SW2的g1/0/2接口已经成为了新的闭塞端口</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW2]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
+<p> <em>步骤2：在SW2上查看STP接口状态，发现SW2的g1/0/2接口已经成为了新的闭塞端口</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW2]display stp brief </span><br><span class="line">MST ID   Port                                Role  STP State   Protection</span><br><span class="line">0        GigabitEthernet1/0/1                ROOT  FORWARDING  NONE</span><br><span class="line">0        GigabitEthernet1/0/2                ALTE  DISCARDING  NONE</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>把SW1连接PC的所有接口配置为边缘接口</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/3</span><br><span class="line">[SW4-GigabitEthernet1/0/3]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthernet1/0/3 is connected to bridges. Please use it carefully.</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/3</span><br><span class="line">[SW4-GigabitEthernet1/0/3]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthernet1/0/3 is connected to bridges. Please use it carefully.</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/4</span><br><span class="line">[SW4-GigabitEthernet1/0/4]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthe</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW4]interface g1/0/4</span><br><span class="line">[SW4-GigabitEthernet1/0/4]stp edged-port </span><br><span class="line">Edge port should only be connected to terminal. It will cause temporary loops if port GigabitEthe</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>

@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
   <title>链路聚合实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="实验拓扑 实验需求 按照图示配置PC3和PC4的IP地址 在SW1和SW2的两条直连链路上配置链路聚合，实现链路冗余，并可以增加传输带宽 SW1和SW2之间的直连链路要配置为Trunk类型，允许所有vlan通过 中断SW1和SW2之间的一条直连链路，测试PC3和PC4是否仍然能够继续访问  实验过程 配置 IP 地址略 配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Tru">
+  <meta name="description" content="实验拓扑">
 <meta name="keywords" content="H3CNE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链路聚合实验">
 <meta property="og:url" content="https://www.tianxiangh.site/2019/09/09/链路聚合实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="实验拓扑 实验需求 按照图示配置PC3和PC4的IP地址 在SW1和SW2的两条直连链路上配置链路聚合，实现链路冗余，并可以增加传输带宽 SW1和SW2之间的直连链路要配置为Trunk类型，允许所有vlan通过 中断SW1和SW2之间的一条直连链路，测试PC3和PC4是否仍然能够继续访问  实验过程 配置 IP 地址略 配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Tru">
+<meta property="og:description" content="实验拓扑">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.tianxiangh.site/2019/09/09/链路聚合实验/%E6%8B%93%E6%89%91.jpg">
 <meta property="og:image" content="https://www.tianxiangh.site/2019/09/09/链路聚合实验/1.jpg">
 <meta property="og:image" content="https://www.tianxiangh.site/2019/09/09/链路聚合实验/2.jpg">
-<meta property="og:updated_time" content="2019-09-10T05:51:17.460Z">
+<meta property="og:updated_time" content="2019-09-10T06:01:08.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链路聚合实验">
-<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置PC3和PC4的IP地址 在SW1和SW2的两条直连链路上配置链路聚合，实现链路冗余，并可以增加传输带宽 SW1和SW2之间的直连链路要配置为Trunk类型，允许所有vlan通过 中断SW1和SW2之间的一条直连链路，测试PC3和PC4是否仍然能够继续访问  实验过程 配置 IP 地址略 配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Tru">
+<meta name="twitter:description" content="实验拓扑">
 <meta name="twitter:image" content="https://www.tianxiangh.site/2019/09/09/链路聚合实验/%E6%8B%93%E6%89%91.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
@@ -183,8 +183,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/%E6%8B%93%E6%89%91.jpg" alt></p>
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><a id="more"></a>
+<p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/%E6%8B%93%E6%89%91.jpg" alt></p>
 <h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
 <li>按照图示配置PC3和PC4的IP地址</li>
 <li>在SW1和SW2的两条直连链路上配置链路聚合，实现链路冗余，并可以增加传输带宽</li>
@@ -192,25 +192,23 @@
 <li>中断SW1和SW2之间的一条直连链路，测试PC3和PC4是否仍然能够继续访问</li>
 </ol>
 <h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li>配置 IP 地址略</li>
-<li>配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Trunk类型（ps: 在有需要配置链路聚合的时候，应该在所有操作之前先配置链路聚合）</li>
-</ol>
+<li><p>配置 IP 地址略</p>
+</li>
+<li><p>配置 sw1 先创建聚接口，然后把对应的接口加入到聚合接口，最后配置为Trunk类型（ps: 在有需要配置链路聚合的时候，应该在所有操作之前先配置链路聚合）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Bridge-Aggregation 1</span><br><span class="line"></span><br><span class="line">[SW1]interface g1/0/1</span><br><span class="line">[SW1-GigabitEthernet1/0/1]port link-aggregation group 1</span><br><span class="line"></span><br><span class="line">[SW1]interface g1/0/2</span><br><span class="line">[SW1-GigabitEthernet1/0/2]port link-aggregation group 1</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>查看链路聚合状态，发现已经成功运行<code>display link-aggregation verbose</code></li>
-</ol>
+</li>
+<li><p>查看链路聚合状态，发现已经成功运行<code>display link-aggregation verbose</code></p>
 <p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/1.jpg" alt></p>
-<ol start="4">
-<li>对 sw2 进行相同操作</li>
-<li>配置SW1和SW2之间的直连链路为Trunk类型，允许所有vlan通过(ps: 要在聚合接口里配置，sw2 相同配置)</li>
-</ol>
+</li>
+<li><p>对 sw2 进行相同操作</p>
+</li>
+<li><p>配置SW1和SW2之间的直连链路为Trunk类型，允许所有vlan通过(ps: 要在聚合接口里配置，sw2 相同配置)</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Bridge-Aggregation 1</span><br><span class="line">[SW1-Bridge-Aggregation1]port link-type trunk</span><br><span class="line">Configuring GigabitEthernet1/0/1 done.</span><br><span class="line">Configuring GigabitEthernet1/0/2 done.</span><br><span class="line">[SW1-Bridge-Aggregation1]port trunk permit vlan all</span><br><span class="line">Configuring GigabitEthernet1/0/1 done.</span><br><span class="line">Configuring GigabitEthernet1/0/2 done.</span><br></pre></td></tr></table></figure>
-
-<ol start="6">
-<li>使用<code>shutdown</code>命令关闭接口g1/0/1,发现PC3和PC4是否仍然能够继续访问</li>
-</ol>
+</li>
+<li><p>使用<code>shutdown</code>命令关闭接口g1/0/1,发现PC3和PC4是否仍然能够继续访问</p>
 <p><img src="//www.tianxiangh.site/2019/09/09/链路聚合实验/2.jpg" alt></p>
+</li>
+</ol>
 
       
 
