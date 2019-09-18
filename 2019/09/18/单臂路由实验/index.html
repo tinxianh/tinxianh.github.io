@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>无问 | 第三人称</title>
+  <title>单臂路由实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
-<meta name="keywords" content="随笔,好歌推荐">
+  <meta name="description" content="实验拓扑 实验需求 按照图示为 pc1 和 pc2 配置 IP 地址和网关 pc1 属于 Vlan10，pc2 属于 Vlan20，配置单臂路由实现 Vlan10 和 Vlan20 三层互通 pc1 和 pc2 可以互通  分析 用单臂路由实现 Vlan 间三层互通，需要把 sw1 连接 r1 的接口配置为 Trunk，并允许 Vlan10 和 Vlan20 通过 r1 连接 sw1 的接口上要开">
+<meta name="keywords" content="H3CNE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无问">
-<meta property="og:url" content="https://www.tianxiangh.site/2019/08/29/无问/index.html">
+<meta property="og:title" content="单臂路由实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/09/18/单臂路由实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示为 pc1 和 pc2 配置 IP 地址和网关 pc1 属于 Vlan10，pc2 属于 Vlan20，配置单臂路由实现 Vlan10 和 Vlan20 三层互通 pc1 和 pc2 可以互通  分析 用单臂路由实现 Vlan 间三层互通，需要把 sw1 连接 r1 的接口配置为 Trunk，并允许 Vlan10 和 Vlan20 通过 r1 连接 sw1 的接口上要开">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-30T02:02:51.705Z">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822206&Signature=BjFKnhk0gnRRn6UiWkP%2BoY0ZBEw%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822227&Signature=88g0eEP6vlyx%2FbXEzzWzXDb3yq4%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2Fping%E9%80%9A.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822242&Signature=aUwdrrwtGg1IPT8A%2BrAbsWDBTkA%3D">
+<meta property="og:updated_time" content="2019-09-18T15:57:59.952Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="无问">
-<meta name="twitter:description" content="你问风为什么托着候鸟飞翔却又吹的让他慌张你问雨为什么滋养万物生长却也湿透他的衣裳">
+<meta name="twitter:title" content="单臂路由实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示为 pc1 和 pc2 配置 IP 地址和网关 pc1 属于 Vlan10，pc2 属于 Vlan20，配置单臂路由实现 Vlan10 和 Vlan20 三层互通 pc1 和 pc2 可以互通  分析 用单臂路由实现 Vlan 间三层互通，需要把 sw1 连接 r1 的接口配置为 Trunk，并允许 Vlan10 和 Vlan20 通过 r1 连接 sw1 的接口上要开">
+<meta name="twitter:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822206&Signature=BjFKnhk0gnRRn6UiWkP%2BoY0ZBEw%3D">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -160,14 +164,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-无问" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-单臂路由实验" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      无问
+      单臂路由实验
     </h1>
   
 
@@ -178,18 +182,42 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2019/08/29/无问/" class="archive-article-date">
-  	<time datetime="2019-08-29T07:15:14.243Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
+<a href="/2019/09/18/单臂路由实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T13:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>你问风为什么托着候鸟飞翔<br>却又吹的让他慌张<br>你问雨为什么滋养万物生长<br>却也湿透他的衣裳</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=525278524&auto=0&height=66"></iframe>
-<br>
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822206&Signature=BjFKnhk0gnRRn6UiWkP%2BoY0ZBEw%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示为 pc1 和 pc2 配置 IP 地址和网关</li>
+<li>pc1 属于 Vlan10，pc2 属于 Vlan20，配置单臂路由实现 Vlan10 和 Vlan20 三层互通</li>
+<li>pc1 和 pc2 可以互通</li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>用单臂路由实现 Vlan 间三层互通，需要把 sw1 连接 r1 的接口配置为 Trunk，并允许 Vlan10 和 Vlan20 通过</li>
+<li>r1 连接 sw1 的接口上要开启子接口，分别作为 Vlan10 和 Vlan20 的网关。这里规划 g0/0.1 子接口作为 Vlan10 的网关，IP 地址就是<code>192.168.1.254/24</code>，g0/0.2 子接口作为 Vlan20 的网关，IP 地址就是<code>192.168.2.254/24</code></li>
+<li>r1 的子接口上为了能够识别 sw1 的 Trunk 端口发送的 802.1Q 帧，还需要开启 dot1q 识别并绑定相应 Vlan。根据上述分析，g0/0.1 子接口绑定 Vlan10，g0/0.2 子接口绑定 Vlan20</li>
+</ul>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>配置 pc ip 网关略</p>
+</li>
+<li><p>配置sw1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW1]vlan 10</span><br><span class="line">[SW1-vlan10]port g1/0/1</span><br><span class="line">[SW1-vlan10]vlan 20</span><br><span class="line">[SW1-vlan20]port g1/0/2</span><br></pre></td></tr></table></figure>
 
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface g1/0/3</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port trunk permit vlan 10 20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 r1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0.1</span><br><span class="line">[R1-GigabitEthernet0/0.1]vlan-type dot1q vid 10    # 开启 dot1q 识别，绑定到 Vlan20</span><br><span class="line">[R1-GigabitEthernet0/0.1]ip address 192.168.1.254 24</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0.2</span><br><span class="line">[R1-GigabitEthernet0/0.2]vlan-type dot1q vid 20</span><br><span class="line">[R1-GigabitEthernet0/0.2]ip address 192.168.2.254 24</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完后查看路由表,而且 pc1 和 pc2 可以互通</p>
+<p> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822227&Signature=88g0eEP6vlyx%2FbXEzzWzXDb3yq4%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2Fping%E9%80%9A.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822242&Signature=aUwdrrwtGg1IPT8A%2BrAbsWDBTkA%3D" alt></p>
+</li>
+</ol>
 
       
 
@@ -203,11 +231,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
         		</li>
       		
 		</ul>
@@ -263,7 +287,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/08/29/无问/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/09/18/单臂路由实验/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,15 +301,20 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/创建AD域/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/18/DHCP中继实验/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          AD域
+          DHCP中继实验
         
       </div>
     </a>
   
+  
+    <a href="/2019/09/18/三层交换实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">三层交换实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

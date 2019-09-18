@@ -241,6 +241,490 @@
 
 
   
+    <article id="post-DHCP中继实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/DHCP中继实验/">DHCP中继实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/DHCP中继实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E4%B8%AD%E7%BB%A7%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822027&Signature=nkHUB6oVYhMXAh191b%2FnA5r%2FR50%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置IP地址</li>
+<li>配置R1为DHCP服务器，能够跨网段为<code>192.168.2.0/24</code>网段自动分配IP地址。要求分配DNS地址为<code>114.114.114.114</code></li>
+<li>PC3获取IP地址后，能够访问到<code>192.168.1.1</code></li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>默认情况下，DHCP只能为和本机处于同一网段的客户端分配IP地址。现在要求跨网段分配IP地址，就需要配置DHCP中继来实现</li>
+<li>在R1上创建的地址池必须要宣告<code>192.168.2.0/24</code>网段。DHCP分配的网关地址应该是<code>192.168.2.0/24</code>网段的真实网关，根据拓扑得知，网关就是R2的g0/1接口，IP地址为<code>192.168.2.254</code></li>
+<li>DHCP的IP地址请求和应答报文都是广播形式发送，默认情况下，是无法穿越路由器的，所以需要在R2上开启DHCP中继功能，使DHCP报文能够跨网段转发</li>
+<li>另外，<code>192.168.2.0/24</code>网段对R1来说，是非直连网段，要使R1和PC3连通，R1上必须具有到达<code>192.168.2.0/24</code>网段的路由信息</li>
+</ul>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>配置R1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp enable</span><br><span class="line">[R1]dhcp server ip-pool 1</span><br><span class="line">[R1-dhcp-pool-1]network 192.168.2.0 mask 255.255.255.0</span><br><span class="line">[R1-dhcp-pool-1]gateway-list 192.168.2.254</span><br><span class="line">[R1-dhcp-pool-1]dns-list 114.114.114.114</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在R2上开启DHCP功能，并在连接客户端的接口（g0/1）上开启DHCP中继功能，并指定DHCP服务器的IP地址</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R2]dhcp enable</span><br><span class="line">[R2]interface g0/1</span><br><span class="line">[R2-GigabitEthernet0/1]dhcp select relay</span><br><span class="line">[R2-GigabitEthernet0/1]dhcp relay server-address 192.168.1.1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在R1上配置默认路由，使R1的DHCP协议报文能够到达PC3 </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 0.0.0.0 0 192.168.1.2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一段时间后，发现PC3 自动获取 IP</p>
+</li>
+</ol>
+<p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E4%B8%AD%E7%BB%A7%E5%AE%9E%E9%AA%8C%2Fpc%20ip.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822048&Signature=nuPXERE%2F4pVquVxxmxx2B%2BCHdes%3D" alt></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/DHCP中继实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-单臂路由实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/单臂路由实验/">单臂路由实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/单臂路由实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T13:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822206&Signature=BjFKnhk0gnRRn6UiWkP%2BoY0ZBEw%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示为 pc1 和 pc2 配置 IP 地址和网关</li>
+<li>pc1 属于 Vlan10，pc2 属于 Vlan20，配置单臂路由实现 Vlan10 和 Vlan20 三层互通</li>
+<li>pc1 和 pc2 可以互通</li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>用单臂路由实现 Vlan 间三层互通，需要把 sw1 连接 r1 的接口配置为 Trunk，并允许 Vlan10 和 Vlan20 通过</li>
+<li>r1 连接 sw1 的接口上要开启子接口，分别作为 Vlan10 和 Vlan20 的网关。这里规划 g0/0.1 子接口作为 Vlan10 的网关，IP 地址就是<code>192.168.1.254/24</code>，g0/0.2 子接口作为 Vlan20 的网关，IP 地址就是<code>192.168.2.254/24</code></li>
+<li>r1 的子接口上为了能够识别 sw1 的 Trunk 端口发送的 802.1Q 帧，还需要开启 dot1q 识别并绑定相应 Vlan。根据上述分析，g0/0.1 子接口绑定 Vlan10，g0/0.2 子接口绑定 Vlan20</li>
+</ul>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>配置 pc ip 网关略</p>
+</li>
+<li><p>配置sw1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW1]vlan 10</span><br><span class="line">[SW1-vlan10]port g1/0/1</span><br><span class="line">[SW1-vlan10]vlan 20</span><br><span class="line">[SW1-vlan20]port g1/0/2</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface g1/0/3</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet1/0/3]port trunk permit vlan 10 20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置 r1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0.1</span><br><span class="line">[R1-GigabitEthernet0/0.1]vlan-type dot1q vid 10    # 开启 dot1q 识别，绑定到 Vlan20</span><br><span class="line">[R1-GigabitEthernet0/0.1]ip address 192.168.1.254 24</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0.2</span><br><span class="line">[R1-GigabitEthernet0/0.2]vlan-type dot1q vid 20</span><br><span class="line">[R1-GigabitEthernet0/0.2]ip address 192.168.2.254 24</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完后查看路由表,而且 pc1 和 pc2 可以互通</p>
+<p> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822227&Signature=88g0eEP6vlyx%2FbXEzzWzXDb3yq4%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E5%8D%95%E8%87%82%E8%B7%AF%E7%94%B1%2Fping%E9%80%9A.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822242&Signature=aUwdrrwtGg1IPT8A%2BrAbsWDBTkA%3D" alt></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/单臂路由实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-三层交换实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/三层交换实验/">三层交换实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/三层交换实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T12:59:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://img.dengfm.com/15218941114502.jpg" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示为 PC2 和 PC3 配置 IP 地址和网关</li>
+<li>PC2 属于 Vlan10，PC3 属于 Vlan20，在三层交换机上配置 Vlanif 三层接口实现 Vlan10 和 Vlan20 三层互通</li>
+<li>PC2 和 PC3 可以互通</li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li><p>在三层交换机上实现 Vlan 间的路由互通，只需要对每个 Vlan 开启 Vlanif 三层接口，并配置对应网段的网关地址就可以了</p>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3></li>
+<li><p>配置 pc ip 网关略</p>
+</li>
+<li><p>配置 sw1</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[SW1]vlan 10</span><br><span class="line">[SW1-vlan10]port g1/0/1</span><br><span class="line">[SW1-vlan10]vlan 20</span><br><span class="line">[SW1-vlan20]port g1/0/2</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Vlan-interface 10    </span><br><span class="line">[SW1-Vlan-interface10]ip address 192.168.1.254 24    # Vlanif10 接口 IP 地址为 Vlan10 的网关地址 192.168.1.254/24</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Vlan-interface 20</span><br><span class="line">[SW1-Vlan-interface20]ip address 192.168.2.254 24    # Vlanif20 接口 IP 地址为 Vlan20 的网关地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完后查看路由表,而且PC2 和 PC3 可以互通<br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%2F%E8%B7%AF%E7%94%B1%E8%A1%A8.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822159&Signature=%2B3eDLsiFNdXVpXiqHl%2BLrsXLu2I%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E4%B8%89%E5%B1%82%E4%BA%A4%E6%8D%A2%2Fping%E9%80%9A.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822178&Signature=S8czBw6JewSYxJ3whungbUtHn%2BU%3D" alt></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/三层交换实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IPv6实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/IPv6实验/">IPv6实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/IPv6实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T12:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821879&Signature=rRn5LQEVKoAsq4p3WD1rc%2FQZLMM%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>在R1和R2上开启IPv6链路本地地址自动生成，测试是否能够使用链路本地地址互通</li>
+<li>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，测试是否能够互通</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>使 R1 R2 自动生成IPv6链路本地地址</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]interface g0/0</span><br><span class="line">[R2-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看IP地址是否配置成功<code>display ipv6 interface brief</code>,且可以互通<br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E8%B7%AF%E7%94%B1%E8%A1%A8.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821959&Signature=rhYTGmHJUqopeR47sGaCIrbFDdk%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2Fr2%20ping%20%E9%80%9A1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821981&Signature=t%2BXToX0N4WNMzKbaJmuKsGCyfoM%3D" alt><br> 注意：在路由器上Ping ipv6链路本地地址，需要指定出接口，如<code>ping ipv6 -i g0/0 FE80::6875:CBFF:FE7A:105</code></p>
+</li>
+<li><p>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，发现能够互通,配置命令为</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::1 64</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::2 64</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/IPv6实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-DHCP实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/DHCP实验/">DHCP实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/DHCP实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T12:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822076&Signature=uuRCYsYjzKQJ8Tyh8r0LC0uwX1Y%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示为r1配置IP地址</li>
+<li>配置r1为DHCP服务器，提供服务的地址池为<code>192.168.1.0/24</code>网段，网关为<code>192.168.1.254</code>，DNS服务器地址为<code>114.114.114.114</code></li>
+<li><code>192.168.1.10-192.168.1.20</code>为专用地址段，要求不能用于自动分配</li>
+<li>PC1和PC2都能获取到<code>192.168.1.0/24</code>网段的IP地址</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>配置 r1 g0/0 IP 地址略</p>
+</li>
+<li><p>配置 r1 上 DHCP 服务</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp enable    # 先开启DHCP服务</span><br><span class="line">[R1]dhcp server ip-pool 200   # 创建地址池，命名为200</span><br><span class="line">[R1-dhcp-pool-200]network 192.168.1.0 mask 255.255.255.0           # 地址池中网段</span><br><span class="line">[R1-dhcp-pool-200]gateway-list 192.168.1.254   # 网关</span><br><span class="line">[R1-dhcp-pool-200]dns-list 114.114.114.144   # DNS</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把<code>192.168.1.10-192.168.1.20</code>排除</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp server forbidden-ip 192.168.1.10 192.168.1.20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一段时间后发现pc1 pc2 自动获得 ip<br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822098&Signature=Uaoof3zC18zr0fATrUQQbZyfdw4%3D" alt="pc1"><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822117&Signature=5n%2Bc1%2FRrj6Jz%2BlIWMtaVId6pExM%3D" alt="pc2"></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/DHCP实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OWASP-ZAP-使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -337,8 +821,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C/cute-2528119_1280.jpg?Expires=1568696769&amp;OSSAccessKeyId=TMP.hXzoLrPD7YcJKpgiMb692pq4uQMQCdHAzBt13hrBnHPwktEWb932MiqPyvRwh5NdimtBxHopeKccTYsL5L9BQwwU5X9hdh9UeDm26hbqGFoviKQDB7r5gcH9b1K6YR.tmp&amp;Signature=zq8TtqtZ8ci9yN2opbVNe5g2kYg%3D" target="_blank" rel="noopener">https://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C/cute-2528119_1280.jpg?Expires=1568696769&amp;OSSAccessKeyId=TMP.hXzoLrPD7YcJKpgiMb692pq4uQMQCdHAzBt13hrBnHPwktEWb932MiqPyvRwh5NdimtBxHopeKccTYsL5L9BQwwU5X9hdh9UeDm26hbqGFoviKQDB7r5gcH9b1K6YR.tmp&amp;Signature=zq8TtqtZ8ci9yN2opbVNe5g2kYg%3D</a></p>
-
+        
       
 
       
@@ -530,395 +1013,6 @@
 
 
   
-    <article id="post-H3C配置管理实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/08/H3C配置管理实验/">H3C配置管理实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/08/H3C配置管理实验/" class="archive-article-date">
-  	<time datetime="2019-09-08T13:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/08/H3C配置管理实验/%E6%8B%93%E6%89%91.jpg" alt></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/08/H3C配置管理实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Telnet配置实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/06/Telnet配置实验/">Telnet配置实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/06/Telnet配置实验/" class="archive-article-date">
-  	<time datetime="2019-09-06T08:14:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="//www.tianxiangh.site/2019/09/06/Telnet配置实验/%E6%8B%93%E6%89%91.jpg" alt></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/06/Telnet配置实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-美好的事物" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/美好的事物/">美好的事物</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/04/美好的事物/" class="archive-article-date">
-  	<time datetime="2019-09-04T11:49:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>你看 顽皮细雨招摇过远帆<br>修理过小店某处忽明忽暗的灯盏<br>你听 江水流过人家吵着要上岸<br>你去过烟花三月的江南</p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=417596830&auto=0&height=66"></iframe>
-<br>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">房东的猫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/美好的事物/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-IP和TCP抓包分析实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/IP和TCP抓包分析实验/">IP和TCP抓包分析实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/04/IP和TCP抓包分析实验/" class="archive-article-date">
-  	<time datetime="2019-09-04T07:33:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="//www.tianxiangh.site/2019/09/04/IP和TCP抓包分析实验/1.jpeg" alt></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">H3CNE实验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/IP和TCP抓包分析实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-创建AD域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/创建AD域/">AD域</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/08/29/创建AD域/" class="archive-article-date">
-  	<time datetime="2019-08-29T12:30:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Windows-server-2012-创建-AD-域，创建域控，创建新用户"><a href="#Windows-server-2012-创建-AD-域，创建域控，创建新用户" class="headerlink" title="Windows server 2012 创建 AD 域，创建域控，创建新用户"></a>Windows server 2012 创建 AD 域，创建域控，创建新用户</h2><h3 id="实验环境：两台-Windows-server-2012-r2-虚拟机"><a href="#实验环境：两台-Windows-server-2012-r2-虚拟机" class="headerlink" title="实验环境：两台 Windows server 2012 r2 虚拟机"></a>实验环境：两台 Windows server 2012 r2 虚拟机</h3><h3 id="实验需求："><a href="#实验需求：" class="headerlink" title="实验需求："></a>实验需求：</h3><ol>
-<li>创建 AD 域 </li>
-<li>提升服务器为域控制器（DC）</li>
-<li>将第二台服务器添加到 AD 域</li></ol>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/创建AD域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1019,19 +1113,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">H3CNE</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
+                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
+                <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1044,6 +1134,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">房东的猫</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
             
             <div class="clearfix"></div>
