@@ -161,28 +161,27 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Vlan和Trunk实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-ACL实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/08/Vlan和Trunk实验/">Vlan和Trunk实验</a>
+      <a class="article-title" href="/2019/09/23/ACL实验/">ACL实验</a>
     </h1>
   
 
         
         
-<a href="/2019/09/08/Vlan和Trunk实验/" class="archive-article-date">
-  	<time datetime="2019-09-08T11:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
+<a href="/2019/09/23/ACL实验/" class="archive-article-date">
+  	<time datetime="2019-09-23T03:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3>
         
       
 
@@ -190,10 +189,224 @@
     </div>
     <div class="article-info article-info-index">
       
-        <div class="article-pop-out tagcloud">
-          <i class="icon-tuding"></i>
-          <a class="article-tag-list-link color3">置顶</a>
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/ACL实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RIP实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/20/RIP实验/">RIP实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/20/RIP实验/" class="archive-article-date">
+  	<time datetime="2019-09-20T06:38:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RIP实验"><a href="#RIP实验" class="headerlink" title="RIP实验"></a>RIP实验</h1><h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://img.dengfm.com/15223253964967.jpg" alt></p>
+<hr>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址</li>
+<li>配置 RIP 实现全网路由互通</li>
+<li>要求全网路由器不能出现明细路由（直连网段除外），不影响网络正常访问</li>
+<li>业务网段不允许出现协议报文</li>
+<li>R1 和 R2 之间需要开启接口身份验证来保证协议安全性，密钥为 <code>runtime</code></li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p><strong>配置 IP 地址部分略</strong></p>
+</li>
+<li><p><strong>配置 RIP 实现全网路由互通</strong></p>
+<p>　　<em>分析：实现全网互通，意味着每台路由器都要宣告本地的所有直连网段。RIP 只能做主类宣告，以 R1 为例，连接的两个业务网段属于同一个 B 类主类网段划分出的子网，所以只用宣告一次；而且为了不造成路由环路，需要开启 RIP v2 版本，以支持 VLSM；R3 同理</em></p>
+<p><em>步骤 1：在 R1，R2，R3 上分别配置 RIP v2，关闭自动聚合，并宣告所有直连网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]rip 1</span><br><span class="line">[R1-rip-1]version 2</span><br><span class="line">[R1-rip-1]undo summary</span><br><span class="line">[R1-rip-1]network 172.16.0.0</span><br><span class="line">[R1-rip-1]network 192.168.1.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R2]rip 1</span><br><span class="line">[R2-rip-1]version 2</span><br><span class="line">[R2-rip-1]undo summary</span><br><span class="line">[R2-rip-1]network 192.168.1.0</span><br><span class="line">[R2-rip-1]network 192.168.2.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R3]rip 1</span><br><span class="line">[R3-rip-1]version 2</span><br><span class="line">[R3-rip-1]undo summary</span><br><span class="line">[R3-rip-1]network 172.16.0.0</span><br><span class="line">[R3-rip-1]network 192.168.2.0</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2:在路由器上查看路由表，发现已经学习到了全网明细路由（详细省略）</em></p>
+</li>
+<li><p><strong>要求全网路由器不能出现明细路由（直连网段除外），不影响网络正常访问</strong></p>
+<p>　<em>分析：上一步中的 RIP 已经配置完成，但路由器学习到的都是各网段的明细路由。在网络结构庞大的拓扑中，明细路由太多会导致路由器查表效率降低，所以需要配置路由聚合来减少路由数量<br>　RIP 的聚合方式分为自动聚合和手动聚合。自动聚合是聚合为主类网段，在本拓扑中会造成路由环路，所以只能使用手动聚合<br>　R1 连接的 2 个业务网段的路由可以聚合为一条 <code>172.16.0.0/23</code>，R3连接的 2 个业务网段的路由可以聚合为一条 <code>172.16.2.0/23</code>，在各自的路由传递的出接口上配置手动聚合</em></p>
+<p><em>步骤 1：在 R1 的 g0/0 接口配置手动路由聚合</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/0]rip summary-address 172.16.0.0 23</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R3 的 g0/0 接口配置手动路由聚合</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-GigabitEthernet0/0]rip summary-address 172.16.2.0 23</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：在 R2 上查看路由表，发现学习到的是 R1 和 R3 发布的聚合路由</em></p>
+<p>　　<em>注意：基于 RIP 的工作原理，旧的明细路由需要一定时间延迟才会从路由表中彻底删除</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[R2]display ip routing-table </span><br><span class="line"></span><br><span class="line">Destinations : 20       Routes : 20</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">……</span><br><span class="line">172.16.0.0/23      RIP     100 1           192.168.1.1     GE0/0</span><br><span class="line">172.16.2.0/23      RIP     100 1           192.168.2.3     GE0/1</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>业务网段不允许出现协议报文</strong></p>
+<p>　　<em>分析：基于 <code>network</code> 命令的两层含义，R1 和 R3 对直连的业务网段进行宣告后，会往该网段发送 RIP 的协议报文。这些协议报文是完全没有意义的，还会消耗网络带宽，所以需要配置静默接口</em></p>
+<p><em>步骤 1：把 R1 连接业务网段的 g0/1 和 g0/2 接口配置为静默接口</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1-rip-1]silent-interface g0/1</span><br><span class="line">[R1-rip-1]silent-interface g0/2</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：把 R3 连接业务网段的 g0/1 和 g0/2 接口配置为静默接口</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3-rip-1]silent-interface g0/1</span><br><span class="line">[R3-rip-1]silent-interface g0/2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>R1 和 R2 之间需要开启接口身份验证来保证协议安全性，密钥为 <code>runtime</code></strong></p>
+<p><em>步骤 1：在 R1 的 g0/0 接口配置接口验证，密钥 <code>runtime</code></em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/0]rip authentication-mode simple plain runtime</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R2 的 g0/0 接口配置接口验证，密钥必须和 R1 一致</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-GigabitEthernet0/0]rip authentication-mode simple plain runtime</span><br></pre></td></tr></table></figure>
+
+<p>　　<em>说明：通过重置 RIP 进程观察是否能够学习到路由来判断接口验证是否通过</em></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/20/RIP实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-OSPF实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/20/OSPF实验/">OSPF实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/20/OSPF实验/" class="archive-article-date">
+  	<time datetime="2019-09-20T06:37:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><h2 id><a href="#" class="headerlink" title></a><img src="https://img-blog.csdnimg.cn/20190707141217556.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h0eDMyMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></h2><h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址</li>
+<li>按照图示分区域配置 OSPF ，实现全网互通</li>
+<li>为了路由结构稳定，要求路由器使用环回口作为 Router-id，ABR 的环回口宣告进骨干区域</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p><strong>配置路由器各接口IP地址略</strong></p>
+</li>
+<li><p><strong>配置路由器环回口IP地址作为路由器的 router-id,以R1为例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface LoopBack 0</span><br><span class="line">[R1-LoopBack0]ip address 1.1.1.1 32</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>按照图示分区域配置 OSPF ，实现全网互通</strong></p>
+<p> <em>步骤 1：在路由器上分别配置 OSPF，按区域宣告所有直连网段和环回口</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]ospf router-id 1.1.1.1</span><br><span class="line">[R1-ospf-1]area 1</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 1.1.1.1 0.0.0.0</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 100.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R2]ospf router-id 2.2.2.2</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 100.1.1.0 0.0.0.255</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]area 1</span><br><span class="line">[R2-ospf-1-area-0.0.0.1]network 100.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R3]ospf router-id 3.3.3.3</span><br><span class="line">[R3-ospf-1]area 0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 100.1.1.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 100.2.2.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R4]ospf router-id 4.4.4.4</span><br><span class="line">[R4-ospf-1]area 0</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]network 4.4.4.4 0.0.0.0</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]network 100.2.2.0 0.0.0.255</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]area 2</span><br><span class="line">[R4-ospf-1-area-0.0.0.1]network 100.4.4.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R5]ospf router-id 5.5.5.5</span><br><span class="line">[R5-ospf-1]area 2</span><br><span class="line">[R5-ospf-1-area-0.0.0.2]network 5.5.5.5 0.0.0.0</span><br><span class="line">[R5-ospf-1-area-0.0.0.2]network 100.4.4.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p><strong>检查是否全网互通</strong></p>
+<p> <em>步骤 1：检查 R2 R4 的邻居关系表</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[r2-ospf-1-area-0.0.0.0]dis ospf peer</span><br><span class="line">     OSPF Process 1 with Router ID 2.2.2.2</span><br><span class="line">           Neighbor Brief Information</span><br><span class="line"> Area: 0.0.0.0</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 3.3.3.3         100.1.1.1       1   31         Full/DR           GE0/1</span><br><span class="line"></span><br><span class="line"> Area: 0.0.0.1</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 1.1.1.1         100.3.3.1       1   34         Full/DR           GE0/0</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[r4]dis ospf peer</span><br><span class="line">     OSPF Process 1 with Router ID 4.4.4.4</span><br><span class="line">           Neighbor Brief Information</span><br><span class="line"> Area: 0.0.0.0</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 3.3.3.3         100.2.2.2       1   31         Full/DR           GE0/0</span><br><span class="line"></span><br><span class="line"> Area: 0.0.0.2</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 5.5.5.5         100.4.4.1       1   40         Full/BDR          GE0/1</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 2：检查 R2 R4 的路由表</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  [r2-ospf-1-area-0.0.0.0]dis ip rou</span><br><span class="line">Destinations : 23       Routes : 23</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">1.1.1.1/32         O_INTRA 10  1           100.3.3.1       GE0/0</span><br><span class="line">2.2.2.2/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">3.3.3.3/32         O_INTRA 10  1           100.1.1.1       GE0/1</span><br><span class="line">4.4.4.4/32         O_INTRA 10  2           100.1.1.1       GE0/1</span><br><span class="line">5.5.5.5/32         O_INTER 10  3           100.1.1.1       GE0/1</span><br><span class="line">100.1.1.0/24       Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.1.1.0/32       Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.1.1.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.1.1.255/32     Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.2.2.0/24       O_INTRA 10  2           100.1.1.1       GE0/1</span><br><span class="line">100.3.3.0/24       Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.3.3.0/32       Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.3.3.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.3.3.255/32     Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.4.4.0/24       O_INTER 10  3           100.1.1.1       GE0/1</span><br><span class="line">127.0.0.0/8        Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.0/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">---- More ----</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> [r4]dis ip rou</span><br><span class="line">Destinations : 23       Routes : 23</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">1.1.1.1/32         O_INTER 10  3           100.2.2.2       GE0/0</span><br><span class="line">2.2.2.2/32         O_INTER 10  2           100.2.2.2       GE0/0</span><br><span class="line">3.3.3.3/32         O_INTRA 10  1           100.2.2.2       GE0/0</span><br><span class="line">4.4.4.4/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">5.5.5.5/32         O_INTRA 10  1           100.4.4.1       GE0/1</span><br><span class="line">100.1.1.0/24       O_INTRA 10  2           100.2.2.2       GE0/0</span><br><span class="line">100.2.2.0/24       Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.2.2.0/32       Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.2.2.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.2.2.255/32     Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.3.3.0/24       O_INTER 10  3           100.2.2.2       GE0/0</span><br><span class="line">100.4.4.0/24       Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">100.4.4.0/32       Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">100.4.4.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.4.4.255/32     Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">127.0.0.0/8        Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.0/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">---- More ----</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
 	<div class="article-tag tagcloud">
@@ -211,7 +424,123 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/08/Vlan和Trunk实验/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/20/OSPF实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-静态路由实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/20/静态路由实验/">静态路由实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/20/静态路由实验/" class="archive-article-date">
+  	<time datetime="2019-09-20T03:59:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.JPG?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928956564&Signature=LkblV3W%2Bd682NqljM25gF%2FFP2R4%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址</li>
+<li>按照如下路径规划配置静态路由，实现连接 PC 的业务网段互通<ol>
+<li><code>192.168.1.0/24</code> 网段到达 <code>192.168.2.0/24</code> 网段经过 R1，R2，R3</li>
+<li><code>192.168.2.0/24</code> 网段到达 <code>192.168.1.0/24</code> 网段经过 R3，R4，R1</li>
+<li><code>192.168.1.0/24</code> 网段到达 <code>192.168.3.0/24</code> 网段经过 R1，R4，R5</li>
+<li><code>192.168.2.0/24</code> 网段到达 <code>192.168.3.0/24</code> 网段经过 R3，R4，R5</li>
+<li><code>192.168.3.0/24</code> 网段到达 <code>192.168.1.0/24</code> 网段和 <code>192.168.2.0/24</code> 网段的路由来回一致</li>
+<li>R5 上不允许出现到达其他业务网段的明细路由</li>
+<li>所有经过 R4 和 R5 的流量通过等价路由实现负载分担</li>
+</ol>
+</li>
+</ol>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li>下一跳为数据报文从接口出发到达的下一个IP地址，一定是对端路由器接口的IP地址</li>
+<li>R5 上不允许出现到达其他业务网段的明细路由，且经过 R4 和 R5 的流量通过等价路由实现负载分担，则 R5 可以设置两条默认路由，下一跳地址分别为<code>10.5.5.4</code> 和<code>10.6.6.4</code>,因为同一来源Cost相等的路由会形成等价路由，数据流会在等价路由上自动负载分担</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p><strong>PC配置IP地址、网关，路由器各个接口配置IP地址</strong></p>
+</li>
+<li><p><strong>按照需求配置静态路由，实现连接 PC 的业务网段互通</strong></p>
+<p> <em>步骤 1：配置 192.168.1.0/24 网段到 192.168.2.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 192.168.2.0 24 10.2.2.2</span><br><span class="line">[R2]ip route-static 192.168.2.0 24 10.3.3.3</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 2：配置 192.168.2.0/24 网段到 192.168.1.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]ip route-static 192.168.1.0 24 10.4.4.4</span><br><span class="line">[R4]ip route-static 192.168.1.0 24 10.1.1.1</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 3：配置 192.168.1.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 192.168.3.0 24 10.1.1.4</span><br><span class="line">[R4]ip route-static 192.168.3.0 24 10.5.5.5</span><br><span class="line">[R4]ip route-static 192.168.3.0 24 10.6.6.5</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 4：配置 192.168.2.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3]ip route-static 192.168.3.0 24 10.4.4.4</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 5：配置 192.168.2.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R5]ip route-static 0.0.0.0 0 10.5.5.4</span><br><span class="line">[R5]ip route-static 0.0.0.0 0 10.6.6.4</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 6：配置 192.168.3.0/24 网段到 192.168.2.0 网段的静态路由</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R4]ip route-static 192.168.2.0 24 10.4.4.3</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/20/静态路由实验/">展开全文 >></a>
         </p>
       
 
@@ -800,219 +1129,6 @@
 
 
   
-    <article id="post-DVWA之暴力破解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/DVWA之暴力破解/">DVWA之暴力破解</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/10/DVWA之暴力破解/" class="archive-article-date">
-  	<time datetime="2019-09-10T11:59:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/DVWA之暴力破解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-链路聚合实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/链路聚合实验/">链路聚合实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/09/链路聚合实验/" class="archive-article-date">
-  	<time datetime="2019-09-09T07:40:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/链路聚合实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-STP实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/STP实验/">STP实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/09/STP实验/" class="archive-article-date">
-  	<time datetime="2019-09-09T07:39:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/STP实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1117,11 +1233,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+                <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
+                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: 房东的猫 | 第三人称</title>
+  <title>OSPF实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/房东的猫/index.html">
+  <meta name="description" content="实验拓扑实验需求 按照图示配置 IP 地址 按照图示分区域配置 OSPF ，实现全网互通 为了路由结构稳定，要求路由器使用环回口作为 Router-id，ABR 的环回口宣告进骨干区域  实验过程 配置路由器各接口IP地址略  配置路由器环回口IP地址作为路由器的 router-id,以R1为例 12[R1]interface LoopBack 0[R1-LoopBack0]ip address">
+<meta name="keywords" content="H3CNE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/09/20/OSPF实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑实验需求 按照图示配置 IP 地址 按照图示分区域配置 OSPF ，实现全网互通 为了路由结构稳定，要求路由器使用环回口作为 Router-id，ABR 的环回口宣告进骨干区域  实验过程 配置路由器各接口IP地址略  配置路由器环回口IP地址作为路由器的 router-id,以R1为例 12[R1]interface LoopBack 0[R1-LoopBack0]ip address">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190707141217556.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h0eDMyMQ==,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-09-20T07:18:46.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="OSPF实验">
+<meta name="twitter:description" content="实验拓扑实验需求 按照图示配置 IP 地址 按照图示分区域配置 OSPF ，实现全网互通 为了路由结构稳定，要求路由器使用环回口作为 Router-id，ABR 的环回口宣告进骨干区域  实验过程 配置路由器各接口IP地址略  配置路由器环回口IP地址作为路由器的 router-id,以R1为例 12[R1]interface LoopBack 0[R1-LoopBack0]ip address">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190707141217556.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h0eDMyMQ==,size_16,color_FFFFFF,t_70">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,69 +162,200 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-OSPF实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/04/美好的事物/" class="archive-article-date">
-  	<time datetime="2019-09-04T11:49:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/04/美好的事物/">美好的事物</a>
+    <h1 class="article-title" itemprop="name">
+      OSPF实验
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/09/20/OSPF实验/" class="archive-article-date">
+  	<time datetime="2019-09-20T06:37:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><h2 id><a href="#" class="headerlink" title></a><img src="https://img-blog.csdnimg.cn/20190707141217556.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h0eDMyMQ==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></h2><h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址</li>
+<li>按照图示分区域配置 OSPF ，实现全网互通</li>
+<li>为了路由结构稳定，要求路由器使用环回口作为 Router-id，ABR 的环回口宣告进骨干区域</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p><strong>配置路由器各接口IP地址略</strong></p>
+</li>
+<li><p><strong>配置路由器环回口IP地址作为路由器的 router-id,以R1为例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface LoopBack 0</span><br><span class="line">[R1-LoopBack0]ip address 1.1.1.1 32</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>按照图示分区域配置 OSPF ，实现全网互通</strong></p>
+<p> <em>步骤 1：在路由器上分别配置 OSPF，按区域宣告所有直连网段和环回口</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]ospf router-id 1.1.1.1</span><br><span class="line">[R1-ospf-1]area 1</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 1.1.1.1 0.0.0.0</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 100.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R2]ospf router-id 2.2.2.2</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 2.2.2.2 0.0.0.0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 100.1.1.0 0.0.0.255</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]area 1</span><br><span class="line">[R2-ospf-1-area-0.0.0.1]network 100.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R3]ospf router-id 3.3.3.3</span><br><span class="line">[R3-ospf-1]area 0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 3.3.3.3 0.0.0.0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 100.1.1.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 100.2.2.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[R4]ospf router-id 4.4.4.4</span><br><span class="line">[R4-ospf-1]area 0</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]network 4.4.4.4 0.0.0.0</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]network 100.2.2.0 0.0.0.255</span><br><span class="line">[R4-ospf-1-area-0.0.0.0]area 2</span><br><span class="line">[R4-ospf-1-area-0.0.0.1]network 100.4.4.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R5]ospf router-id 5.5.5.5</span><br><span class="line">[R5-ospf-1]area 2</span><br><span class="line">[R5-ospf-1-area-0.0.0.2]network 5.5.5.5 0.0.0.0</span><br><span class="line">[R5-ospf-1-area-0.0.0.2]network 100.4.4.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p><strong>检查是否全网互通</strong></p>
+<p> <em>步骤 1：检查 R2 R4 的邻居关系表</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[r2-ospf-1-area-0.0.0.0]dis ospf peer</span><br><span class="line">     OSPF Process 1 with Router ID 2.2.2.2</span><br><span class="line">           Neighbor Brief Information</span><br><span class="line"> Area: 0.0.0.0</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 3.3.3.3         100.1.1.1       1   31         Full/DR           GE0/1</span><br><span class="line"></span><br><span class="line"> Area: 0.0.0.1</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 1.1.1.1         100.3.3.1       1   34         Full/DR           GE0/0</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[r4]dis ospf peer</span><br><span class="line">     OSPF Process 1 with Router ID 4.4.4.4</span><br><span class="line">           Neighbor Brief Information</span><br><span class="line"> Area: 0.0.0.0</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 3.3.3.3         100.2.2.2       1   31         Full/DR           GE0/0</span><br><span class="line"></span><br><span class="line"> Area: 0.0.0.2</span><br><span class="line"> Router ID       Address         Pri Dead-Time  State             Interface</span><br><span class="line"> 5.5.5.5         100.4.4.1       1   40         Full/BDR          GE0/1</span><br></pre></td></tr></table></figure>
+
+<p> <em>步骤 2：检查 R2 R4 的路由表</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  [r2-ospf-1-area-0.0.0.0]dis ip rou</span><br><span class="line">Destinations : 23       Routes : 23</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">1.1.1.1/32         O_INTRA 10  1           100.3.3.1       GE0/0</span><br><span class="line">2.2.2.2/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">3.3.3.3/32         O_INTRA 10  1           100.1.1.1       GE0/1</span><br><span class="line">4.4.4.4/32         O_INTRA 10  2           100.1.1.1       GE0/1</span><br><span class="line">5.5.5.5/32         O_INTER 10  3           100.1.1.1       GE0/1</span><br><span class="line">100.1.1.0/24       Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.1.1.0/32       Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.1.1.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.1.1.255/32     Direct  0   0           100.1.1.2       GE0/1</span><br><span class="line">100.2.2.0/24       O_INTRA 10  2           100.1.1.1       GE0/1</span><br><span class="line">100.3.3.0/24       Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.3.3.0/32       Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.3.3.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.3.3.255/32     Direct  0   0           100.3.3.2       GE0/0</span><br><span class="line">100.4.4.0/24       O_INTER 10  3           100.1.1.1       GE0/1</span><br><span class="line">127.0.0.0/8        Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.0/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">---- More ----</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> [r4]dis ip rou</span><br><span class="line">Destinations : 23       Routes : 23</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">0.0.0.0/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">1.1.1.1/32         O_INTER 10  3           100.2.2.2       GE0/0</span><br><span class="line">2.2.2.2/32         O_INTER 10  2           100.2.2.2       GE0/0</span><br><span class="line">3.3.3.3/32         O_INTRA 10  1           100.2.2.2       GE0/0</span><br><span class="line">4.4.4.4/32         Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">5.5.5.5/32         O_INTRA 10  1           100.4.4.1       GE0/1</span><br><span class="line">100.1.1.0/24       O_INTRA 10  2           100.2.2.2       GE0/0</span><br><span class="line">100.2.2.0/24       Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.2.2.0/32       Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.2.2.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.2.2.255/32     Direct  0   0           100.2.2.1       GE0/0</span><br><span class="line">100.3.3.0/24       O_INTER 10  3           100.2.2.2       GE0/0</span><br><span class="line">100.4.4.0/24       Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">100.4.4.0/32       Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">100.4.4.2/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">100.4.4.255/32     Direct  0   0           100.4.4.2       GE0/1</span><br><span class="line">127.0.0.0/8        Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.0/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">127.0.0.1/32       Direct  0   0           127.0.0.1       InLoop0</span><br><span class="line">---- More ----</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">好歌推荐</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">房东的猫</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/09/20/OSPF实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/20/RIP实验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          RIP实验
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/09/20/静态路由实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">静态路由实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -255,9 +389,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
