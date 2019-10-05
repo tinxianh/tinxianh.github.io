@@ -6,19 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: H3CNE | 第三人称</title>
+  <title>NAT实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/H3CNE/page/2/index.html">
+  <meta name="description" content="实验拓扑 实验需求 按照图示配置 IP 地址 私网 A 通过 R1 接入到互联网，私网 B 通过 R3 接入到互联网 私网 A 内部存在 Vlan10 和 Vlan20，通过 R1 上单臂路由访问外部网络 私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网 私网 B 通过在 R3 上配置 EASY IP 访问互联网 私网 A 配置 NAT SERV">
+<meta name="keywords" content="H3CNE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NAT实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/10/05/NAT实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示配置 IP 地址 私网 A 通过 R1 接入到互联网，私网 B 通过 R3 接入到互联网 私网 A 内部存在 Vlan10 和 Vlan20，通过 R1 上单臂路由访问外部网络 私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网 私网 B 通过在 R3 上配置 EASY IP 访问互联网 私网 A 配置 NAT SERV">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930265220&Signature=Y5IXKANq1Kqwq9Jw%2F3rJS18oVis%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2FpcA_ping%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930265860&Signature=wSpx2z9tdi8p3qixS4NFDt3QkoE%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2FPC2_ping%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930266202&Signature=CI6%2Bmtn6lZ64Sqgaa6%2BY8Nc%2B4es%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2Fftp%E6%88%90%E5%8A%9F%E8%BF%9E%E6%8E%A5.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930266437&Signature=696ZPohxQ87xOC%2FAjWy8poJpg78%3D">
+<meta property="og:updated_time" content="2019-10-05T09:08:04.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="NAT实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置 IP 地址 私网 A 通过 R1 接入到互联网，私网 B 通过 R3 接入到互联网 私网 A 内部存在 Vlan10 和 Vlan20，通过 R1 上单臂路由访问外部网络 私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网 私网 B 通过在 R3 上配置 EASY IP 访问互联网 私网 A 配置 NAT SERV">
+<meta name="twitter:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930265220&Signature=Y5IXKANq1Kqwq9Jw%2F3rJS18oVis%3D">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,37 +165,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-NAT实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      NAT实验
+    </h1>
+  
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/10/05/NAT实验/" class="archive-article-date">
+  	<time datetime="2019-10-05T08:45:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930265220&Signature=Y5IXKANq1Kqwq9Jw%2F3rJS18oVis%3D" alt></p>
+<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><ol>
+<li>按照图示配置 IP 地址</li>
+<li>私网 A 通过 R1 接入到互联网，私网 B 通过 R3 接入到互联网</li>
+<li>私网 A 内部存在 Vlan10 和 Vlan20，通过 R1 上单臂路由访问外部网络</li>
+<li>私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网</li>
+<li>私网 B 通过在 R3 上配置 EASY IP 访问互联网</li>
+<li>私网 A 配置 NAT SERVER 把 FTPA 的 FTP 服务发布到公网，使 PCB 可以访问</li>
+</ol>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><h3 id="1-在私网A配置单臂路由"><a href="#1-在私网A配置单臂路由" class="headerlink" title="1.在私网A配置单臂路由"></a>1.在私网A配置单臂路由</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">FTP-A：</span><br><span class="line">[FTP-A]ip rou 0.0.0.0 0 192.168.1.254     # 这里用路由器代替PC，配置一条默认路由相当于真正PC的网关</span><br><span class="line">[FTP-A-GigabitEthernet0/0]ip add 192.168.1.1 24</span><br><span class="line"></span><br><span class="line">PCA：</span><br><span class="line">[PCA]ip rou 0.0.0.0 0 192.168.2.254</span><br><span class="line">[PCA-GigabitEthernet0/0]ip add 192.168.2.1 24</span><br><span class="line"></span><br><span class="line">SW1：</span><br><span class="line">[SW1]vlan 10</span><br><span class="line">[SW1-vlan10]port g1/0/2</span><br><span class="line">[SW1-vlan10]vlan 20</span><br><span class="line">[SW1-vlan20]port g1/0/3</span><br><span class="line">[SW1-GigabitEthernet1/0/1]port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet1/0/1]port trunk permit vlan 10 20</span><br><span class="line"></span><br><span class="line">R1：</span><br><span class="line">[R1-GigabitEthernet0/1.1]ip add 192.168.1.254 24</span><br><span class="line">[R1-GigabitEthernet0/1.1]vlan-type dot1q vid 10</span><br><span class="line">[R1-GigabitEthernet0/1.2]ip add 192.168.2.254 24</span><br><span class="line">[R1-GigabitEthernet0/1.2]vlan-type dot1q vid  20</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-R1-R3上配置默认路由连接到公网："><a href="#2-R1-R3上配置默认路由连接到公网：" class="headerlink" title="2.R1 R3上配置默认路由连接到公网："></a>2.R1 R3上配置默认路由连接到公网：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip rou 0.0.0.0 0 100.1.1.2</span><br><span class="line">[R3]ip rou 0.0.0.0 0 100.2.2.2</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-私网-A-通过-NAPT-使-Vlan10-和-Vlan20-都能够使用-R1-的公网地址访问互联网"><a href="#3-私网-A-通过-NAPT-使-Vlan10-和-Vlan20-都能够使用-R1-的公网地址访问互联网" class="headerlink" title="3.私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网"></a>3.私网 A 通过 NAPT 使 Vlan10 和 Vlan20 都能够使用 R1 的公网地址访问互联网</h3><p>分析：根据需求得知，ACL 需要配置允许 <code>192.168.1.0/24</code> 和 <code>192.168.2.0/24</code> 网段；私网 A 只有 1 个公网地址可用，意味着创建的 NAT 地址池起始和结束地址就都是 <code>100.1.1.1</code></p>
+<p><em>步骤 1：R1 上创建基本 ACL，允许 <code>192.168.1.0/24</code> 和 <code>192.168.2.0/24</code> 网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]acl basic 2000</span><br><span class="line">[R1-acl-ipv4-basic-2000]rule permit source 192.168.1.0 0.0.0.255</span><br><span class="line">[R1-acl-ipv4-basic-2000]rule permit source 192.168.2.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：R1 上创建 NAT 地址池，设置公网地址</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]nat address-group 1</span><br><span class="line">[R1-address-group-1]address 100.1.1.1 100.1.1.1</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：在 R1 的公网接口上配置 NAPT</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]nat outbound 2000 address-group 1</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 4：在 PCA 上 Ping 公网地址，测试是否可以访问互联网</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2FpcA_ping%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930265860&Signature=wSpx2z9tdi8p3qixS4NFDt3QkoE%3D" alt></p>
+<h3 id="4-私网-B-通过在-R3-上配置-EASY-IP-访问互联网"><a href="#4-私网-B-通过在-R3-上配置-EASY-IP-访问互联网" class="headerlink" title="4.私网 B 通过在 R3 上配置 EASY IP 访问互联网"></a>4.私网 B 通过在 R3 上配置 EASY IP 访问互联网</h3><p>分析：根据需求得知，ACL 需要配置允许 <code>192.168.1.0/24</code> 网段；使用 EASY IP，就无需配置 NAT 地址池，直接在公网接口上配置即可，EASY IP 会自动识别公网接口的 IP 地址</p>
+<p><em>步骤 1：R3 上创建基本 ACL，允许 <code>192.168.1.0/24</code> 网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]acl basic 2000</span><br><span class="line">[R3-acl-ipv4-basic-2000]rule permit source 192.168.1.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R3 的公网接口上配置 EASY IP</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]interface g0/0</span><br><span class="line">[R3-GigabitEthernet0/0]nat outbound 2000</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：PCB配置</em><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[PCB]ip rou 0.0.0.0 0 192.168.1.254</span><br><span class="line">[PCB-GigabitEthernet0/0]ip add 192.168.1.1 24</span><br></pre></td></tr></table></figure></p>
+<p><em>步骤 4：在 PCB 上 Ping 公网地址，测试是否可以访问互联网</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2FPC2_ping%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930266202&Signature=CI6%2Bmtn6lZ64Sqgaa6%2BY8Nc%2B4es%3D" alt></p>
+<h3 id="5-私网-A-配置-NAT-SERVER-把-FTPA-的-FTP-服务发布到公网，使-PCB-可以访问"><a href="#5-私网-A-配置-NAT-SERVER-把-FTPA-的-FTP-服务发布到公网，使-PCB-可以访问" class="headerlink" title="5.私网 A 配置 NAT SERVER 把 FTPA 的 FTP 服务发布到公网，使 PCB 可以访问"></a>5.私网 A 配置 NAT SERVER 把 FTPA 的 FTP 服务发布到公网，使 PCB 可以访问</h3><p>分析：根据需求得知，需要发布 FTPA 的 FTP 服务，也就是把 R1 的公网地址的 20 和 21 端口映射到 FTPA 的私网地址</p>
+<p><em>步骤 1：在FTPA上开启FTP服务，并在 R1 的公网接口上配置 NAT SERVER，映射端口 20 和 21</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FTP-A配置ftp：</span><br><span class="line">[FTP-A]ftp server enable</span><br><span class="line">[FTP-A]local-user asdf</span><br><span class="line">[FTP-A-luser-manage-asdf]password simple 123456</span><br><span class="line"></span><br><span class="line">[R1-GigabitEthernet0/1]nat server protocol tcp global current-interface 20 21 inside 192.168.1.1 20 21</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 PCB 上测试是否能够通过 R1 的公网地址访问 FTPA 的 FTP 服务</em></p>
+<p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/NAT%2Fftp%E6%88%90%E5%8A%9F%E8%BF%9E%E6%8E%A5.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930266437&Signature=696ZPohxQ87xOC%2FAjWy8poJpg78%3D" alt><br>实验完成</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/08/H3C配置管理实验/" class="archive-article-date">
-  	<time datetime="2019-09-08T13:44:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/08/H3C配置管理实验/">H3C配置管理实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -201,100 +249,105 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/10/05/NAT实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/08/Vlan和Trunk实验/" class="archive-article-date">
-  	<time datetime="2019-09-08T11:28:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/23/ACL实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ACL实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/08/Vlan和Trunk实验/">Vlan和Trunk实验</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/06/Telnet配置实验/" class="archive-article-date">
-  	<time datetime="2019-09-06T08:14:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/06/Telnet配置实验/">Telnet配置实验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/H3CNE/">&laquo; Prev</a><a class="page-number" href="/tags/H3CNE/">1</a><span class="page-number current">2</span>
-    </nav>
   
 
 
@@ -329,9 +382,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
