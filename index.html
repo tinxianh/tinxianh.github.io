@@ -161,6 +161,255 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ospf中级实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/09/ospf中级实验/">OSPF中级实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/10/09/ospf中级实验/" class="archive-article-date">
+  	<time datetime="2019-10-09T07:11:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605208&Signature=f9cKpEt8t3dHpzPl202ROcYpzVY%3D" alt></p>
+<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><ol>
+<li>按照图示配置 IP 地址</li>
+<li>R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id</li>
+<li>业务网段不允许出现协议报文</li>
+<li>R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF</li>
+<li>R1 上配置 EASY IP，只允许业务网段访问互联网</li>
+<li>要求业务网段访问互联网流量经过 R3，R2，R1</li>
+</ol>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><ol>
+<li><p><strong>配置 IP 地址略</strong></p>
+</li>
+<li><p><strong>R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id</strong></p>
+<p><em>步骤 1：创建 OSPF 进程，手动指定环回口地址为 Router-id，把所有内网接口宣告进 Area 0</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]ospf router-id 1.1.1.1</span><br><span class="line">[R1-ospf-1]area 0</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 10.1.1.0 0.0.0.255</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 10.2.2.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R2]ospf router-id 2.2.2.2</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 10.1.1.0 0.0.0.255</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 10.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R3]ospf router-id 3.3.3.3</span><br><span class="line">[R3-ospf-1]area 0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 10.2.2.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 10.3.3.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>业务网段不允许出现协议报文</strong></p>
+<p><em>步骤 1：把 R3 连接业务网段的 g0/2 口配置为静默接口，防止协议报文冲击业务网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-ospf-1]silent-interface g0/2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF</strong></p>
+<p><em>步骤 1：在 R1 上配置默认路由，下一跳指向为 <code>202.1.1.5</code></em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 0.0.0.0 0 202.1.1.5</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R1 上把默认路由引入到 OSPF</em></p>
+<p>　　<em>分析：因为 R1 上已经配置了默认路由，所以引入在 OSPF 中引入默认路由时，不需要带 <code>always</code> 参数</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-ospf-1]default-route-advertise</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R2 和 R3 上查看路由表，发现已经有了默认路由，路由来源是 <code>O_ASE2</code>，说明是从 OSPF 学习到的外部路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605430&Signature=uDhY6je41HS9t%2FHqyP1G0gr9tVs%3D" alt><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R3.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605467&Signature=FkZxdJ3T48%2BU9w45EAYqRqC2m%2FM%3D" alt></p>
+</li>
+<li><p><strong>R1 上配置 EASY IP，只允许业务网段访问互联网</strong></p>
+<p> <em>步骤 1：在 R1 上创建基本 ACL，只允许业务网段 <code>192.168.1.0/24</code></em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]acl basic 2000</span><br><span class="line">[R1-acl-ipv4-basic-2000]rule permit source 192.168.1.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<pre><code>_步骤 2：在 R1 的公网接口上，配置 EASY IP，使内网可以访问互联网_
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/2]nat outbound 2000</span><br></pre></td></tr></table></figure>
+
+
+_效果测试：在 PC4 上 PING R5的环回口地址，PING 通说明可以访问互联网_
+![](http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E5%86%85%E7%BD%91ping%E9%80%9A%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&amp;Expires=1930605675&amp;Signature=2loxVUFahZASgstCCycerLRNw70%3D)</code></pre><ol start="6">
+<li><p><strong>要求业务网段访问互联网流量经过 R3，R2，R1，来回路径一致</strong></p>
+<p> 　　<em>分析：按照 OSPF 选路规则，内网各链路 Cost 一致，业务网段到互联网的流量会优先选择路由经过 R3，R1，而不会经过 R2<br> 　　要想使流量经过 R2，就需要通过修改链路 Cost，使 R1-R3 的 Cost 比 R1-R2-R3 的 Cost 大，这里把 R1-R3 的 Cost 修改为 1000，来影响 OSPF 选路</em></p>
+<p> <em>步骤 1：把 R1 和 R3 相连的接口的 Cost 修改为 1000</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/1]ospf cost 1000</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-GigabitEthernet0/0]ospf cost 1000</span><br></pre></td></tr></table></figure>
+
+
+_效果测试：查看 R1的路由表，确认到达 `192.168.1.0/24` 网段的路由是经过 R1，R2，R3，而不是直接从R3走_
+![](http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&amp;Expires=1930605842&amp;Signature=%2FoUG2h6H8jSUW%2FGilNHadT8rQH4%3D)</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/09/ospf中级实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-路由备份-聚合实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/08/路由备份-聚合实验/">路由备份&amp;聚合实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/10/08/路由备份-聚合实验/" class="archive-article-date">
+  	<time datetime="2019-10-08T12:51:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="路由备份-amp-聚合实验"><a href="#路由备份-amp-聚合实验" class="headerlink" title="路由备份&amp;聚合实验"></a>路由备份&amp;聚合实验</h1><h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E8%B7%AF%E7%94%B1%E5%A4%87%E4%BB%BD%26%E8%81%9A%E5%90%88%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.JPG?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930545043&Signature=cp1xsCbbyIxLxLsNzmLzfE6M3xY%3D" alt></p>
+<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><ol>
+<li>按照图示配置 IP 地址，R3 上连接 <code>192.168.X.X/24</code> 4个业务网段</li>
+<li>配置 RIPv2 协议使全网互通，R1 和 R3 的直连链路不运行 RIP</li>
+<li>R1 上配置静态路由直接经过 R3 到达所有业务网段</li>
+<li>R1 和 R2 上不允许出现业务网段的明细路由</li>
+<li>要求 R1 上到达所有业务网段优先走 R2，当 R2 的链路故障时，自动切换到走 R3</li>
+</ol>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><ol>
+<li><p><strong>配置 IP 地址略</strong></p>
+</li>
+<li><p><strong>配置 RIPv2 协议使全网互通，R1 和 R3 的直连链路不运行 RIP</strong></p>
+<p><em>步骤 1：分别在 R1，R2，R3 上配置 RIPv2，关闭自动聚合，宣告所有直连网段，除了 R1 和 R3 的 <code>200.3.3.0/24</code> 网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]rip</span><br><span class="line">[R1-rip-1]version 2</span><br><span class="line">[R1-rip-1]undo summary</span><br><span class="line">[R1-rip-1]network 200.1.1.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R2]rip</span><br><span class="line">[R2-rip-1]version 2</span><br><span class="line">[R2-rip-1]undo summary</span><br><span class="line">[R2-rip-1]network 200.1.1.0</span><br><span class="line">[R2-rip-1]network 200.2.2.0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[R3]rip</span><br><span class="line">[R3-rip-1]version 2</span><br><span class="line">[R3-rip-1]undo summary</span><br><span class="line">[R3-rip-1]network 200.2.2.0</span><br><span class="line">[R3-rip-1]network 192.168.0.0</span><br><span class="line">[R3-rip-1]network 192.168.1.0</span><br><span class="line">[R3-rip-1]network 192.168.2.0</span><br><span class="line">[R3-rip-1]network 192.168.3.0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>R1 上配置静态路由直接经过 R3 到达所有业务网段</strong></p>
+</li>
+<li><p><strong>R1 和 R2 上不允许出现业务网段的明细路由</strong></p>
+</li>
+<li><p><strong>要求 R1 上到达所有业务网段优先走 R2，当 R2 的链路故障时，自动切换到走 R3</strong></p>
+<p>　　<em>分析：R3 上一共有 4 个业务网段，而且是连续的 C 类网段，要求全网不允许出现业务网段的明细路由，所以 R1 上配置的静态路由必须是聚合路由，且 R3 需要把业务网段在 RIP 中聚合后发布<br>　　<code>192.168.0.0/24</code> - <code>192.168.3.0/24</code> 这 4 个业务网段是连续的，而且对 R1 来说在同一个下一跳，满足聚合要求。4 条路由聚合为一条，子网掩码需要缩短 2 位，聚合之后的路由为 <code>192.168.0.0/22</code> 网段<br>　　另外，需要优先走 R2，意味着配置的静态路由是作为浮动静态路由备份，静态路由的优先级需要修改到比 RIP 更大</em></p>
+<p><em>步骤 1：R1 上配置到达所有业务网段的静态聚合路由，同时修改优先级到 110，作为浮动静态路由备份</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 192.168.0.0 22 200.3.3.3 preference 110</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：R3 上在连接 R2 的接口上配置 RIP 聚合，把所有业务网段聚合为一条</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]interface g0/1</span><br><span class="line">[R3-GigabitEthernet0/1]rip summary-address 192.168.0.0 22</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：测试 R1 和 R2 上只存在业务网段的聚合路由，且 R1 上优先选择了 RIP 的路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[R1]display ip routing-table</span><br><span class="line"></span><br><span class="line">Destinations : 22       Routes : 22</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">……</span><br><span class="line">192.168.0.0/22     RIP     100 2           200.1.1.2       GE0/0</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[R2]display ip routing-table </span><br><span class="line"></span><br><span class="line">Destinations : 21       Routes : 21</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">……</span><br><span class="line">192.168.0.0/22     RIP     100 1           200.2.2.3       GE0/1</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 4：当中断 R1 和 R2 相连的接口，R1 到达所有业务网段的路由会自动切换到静态路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/0]shutdown </span><br><span class="line">[R1-GigabitEthernet0/0]display ip routing-table</span><br><span class="line"></span><br><span class="line">Destinations : 13       Routes : 13</span><br><span class="line"></span><br><span class="line">Destination/Mask   Proto   Pre Cost        NextHop         Interface</span><br><span class="line">……</span><br><span class="line">192.168.0.0/22     Static  110 0           200.3.3.3       GE0/1</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/08/路由备份-聚合实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-NAT实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -980,193 +1229,6 @@
 
 
   
-    <article id="post-IPv6实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/IPv6实验/">IPv6实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/18/IPv6实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821879&Signature=rRn5LQEVKoAsq4p3WD1rc%2FQZLMM%3D" alt></p>
-<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
-<li>在R1和R2上开启IPv6链路本地地址自动生成，测试是否能够使用链路本地地址互通</li>
-<li>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，测试是否能够互通</li>
-</ol>
-<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li><p>使 R1 R2 自动生成IPv6链路本地地址</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
-
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]interface g0/0</span><br><span class="line">[R2-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看IP地址是否配置成功<code>display ipv6 interface brief</code>,且可以互通<br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E8%B7%AF%E7%94%B1%E8%A1%A8.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821959&Signature=rhYTGmHJUqopeR47sGaCIrbFDdk%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2Fr2%20ping%20%E9%80%9A1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821981&Signature=t%2BXToX0N4WNMzKbaJmuKsGCyfoM%3D" alt><br> 注意：在路由器上Ping ipv6链路本地地址，需要指定出接口，如<code>ping ipv6 -i g0/0 FE80::6875:CBFF:FE7A:105</code></p>
-</li>
-<li><p>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，发现能够互通,配置命令为</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::1 64</span><br></pre></td></tr></table></figure>
-
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::2 64</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/IPv6实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DHCP实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/DHCP实验/">DHCP实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/18/DHCP实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822076&Signature=uuRCYsYjzKQJ8Tyh8r0LC0uwX1Y%3D" alt></p>
-<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
-<li>按照图示为r1配置IP地址</li>
-<li>配置r1为DHCP服务器，提供服务的地址池为<code>192.168.1.0/24</code>网段，网关为<code>192.168.1.254</code>，DNS服务器地址为<code>114.114.114.114</code></li>
-<li><code>192.168.1.10-192.168.1.20</code>为专用地址段，要求不能用于自动分配</li>
-<li>PC1和PC2都能获取到<code>192.168.1.0/24</code>网段的IP地址</li>
-</ol>
-<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li><p>配置 r1 g0/0 IP 地址略</p>
-</li>
-<li><p>配置 r1 上 DHCP 服务</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp enable    # 先开启DHCP服务</span><br><span class="line">[R1]dhcp server ip-pool 200   # 创建地址池，命名为200</span><br><span class="line">[R1-dhcp-pool-200]network 192.168.1.0 mask 255.255.255.0           # 地址池中网段</span><br><span class="line">[R1-dhcp-pool-200]gateway-list 192.168.1.254   # 网关</span><br><span class="line">[R1-dhcp-pool-200]dns-list 114.114.114.144   # DNS</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>把<code>192.168.1.10-192.168.1.20</code>排除</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp server forbidden-ip 192.168.1.10 192.168.1.20</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一段时间后发现pc1 pc2 自动获得 ip<br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822098&Signature=Uaoof3zC18zr0fATrUQQbZyfdw4%3D" alt="pc1"><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822117&Signature=5n%2Bc1%2FRrj6Jz%2BlIWMtaVId6pExM%3D" alt="pc2"></p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/DHCP实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1271,11 +1333,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+                <a href="javascript:void(0)" class="js-tag color1">H3CSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1288,10 +1358,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">房东的猫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
             
             <div class="clearfix"></div>

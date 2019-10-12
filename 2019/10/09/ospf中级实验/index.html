@@ -6,19 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Archives: 2019/9 | 第三人称</title>
+  <title>OSPF中级实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/archives/2019/09/index.html">
+  <meta name="description" content="实验拓扑 实验需求 按照图示配置 IP 地址 R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id 业务网段不允许出现协议报文 R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF R1 上配置 EASY IP，只允许业务网段访问互联网 要求业务网段访问互联网流量经过 R3，R2，">
+<meta name="keywords" content="H3CSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF中级实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/10/09/ospf中级实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示配置 IP 地址 R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id 业务网段不允许出现协议报文 R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF R1 上配置 EASY IP，只允许业务网段访问互联网 要求业务网段访问互联网流量经过 R3，R2，">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605208&Signature=f9cKpEt8t3dHpzPl202ROcYpzVY%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605430&Signature=uDhY6je41HS9t%2FHqyP1G0gr9tVs%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R3.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605467&Signature=FkZxdJ3T48%2BU9w45EAYqRqC2m%2FM%3D">
+<meta property="og:updated_time" content="2019-10-09T07:26:25.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="OSPF中级实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置 IP 地址 R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id 业务网段不允许出现协议报文 R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF R1 上配置 EASY IP，只允许业务网段访问互联网 要求业务网段访问互联网流量经过 R3，R2，">
+<meta name="twitter:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605208&Signature=f9cKpEt8t3dHpzPl202ROcYpzVY%3D">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,393 +164,210 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ospf中级实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OSPF中级实验
+    </h1>
+  
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/10/09/ospf中级实验/" class="archive-article-date">
+  	<time datetime="2019-10-09T07:11:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h2><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605208&Signature=f9cKpEt8t3dHpzPl202ROcYpzVY%3D" alt></p>
+<h2 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h2><ol>
+<li>按照图示配置 IP 地址</li>
+<li>R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id</li>
+<li>业务网段不允许出现协议报文</li>
+<li>R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF</li>
+<li>R1 上配置 EASY IP，只允许业务网段访问互联网</li>
+<li>要求业务网段访问互联网流量经过 R3，R2，R1</li>
+</ol>
+<h2 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h2><ol>
+<li><p><strong>配置 IP 地址略</strong></p>
+</li>
+<li><p><strong>R1，R2，R3 运行 OSPF 使内网互通，所有接口（公网接口除外）全部宣告进 Area 0；要求使用环回口作为 Router-id</strong></p>
+<p><em>步骤 1：创建 OSPF 进程，手动指定环回口地址为 Router-id，把所有内网接口宣告进 Area 0</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]ospf router-id 1.1.1.1</span><br><span class="line">[R1-ospf-1]area 0</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 10.1.1.0 0.0.0.255</span><br><span class="line">[R1-ospf-1-area-0.0.0.0]network 10.2.2.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R2]ospf router-id 2.2.2.2</span><br><span class="line">[R2-ospf-1]area 0</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 10.1.1.0 0.0.0.255</span><br><span class="line">[R2-ospf-1-area-0.0.0.0]network 10.3.3.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R3]ospf router-id 3.3.3.3</span><br><span class="line">[R3-ospf-1]area 0</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 10.2.2.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 10.3.3.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]network 192.168.1.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>业务网段不允许出现协议报文</strong></p>
+<p><em>步骤 1：把 R3 连接业务网段的 g0/2 口配置为静默接口，防止协议报文冲击业务网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-ospf-1]silent-interface g0/2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>R5 模拟互联网，内网通过 R1 连接互联网，在 R1 上配置默认路由并引入到 OSPF</strong></p>
+<p><em>步骤 1：在 R1 上配置默认路由，下一跳指向为 <code>202.1.1.5</code></em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 0.0.0.0 0 202.1.1.5</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R1 上把默认路由引入到 OSPF</em></p>
+<p>　　<em>分析：因为 R1 上已经配置了默认路由，所以引入在 OSPF 中引入默认路由时，不需要带 <code>always</code> 参数</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-ospf-1]default-route-advertise</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R2 和 R3 上查看路由表，发现已经有了默认路由，路由来源是 <code>O_ASE2</code>，说明是从 OSPF 学习到的外部路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605430&Signature=uDhY6je41HS9t%2FHqyP1G0gr9tVs%3D" alt><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E9%BB%98%E8%AE%A4%E8%B7%AF%E7%94%B1%E8%A2%AB%E5%BC%95%E5%85%A5%E5%88%B0ospf_R3.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930605467&Signature=FkZxdJ3T48%2BU9w45EAYqRqC2m%2FM%3D" alt></p>
+</li>
+<li><p><strong>R1 上配置 EASY IP，只允许业务网段访问互联网</strong></p>
+<p> <em>步骤 1：在 R1 上创建基本 ACL，只允许业务网段 <code>192.168.1.0/24</code></em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]acl basic 2000</span><br><span class="line">[R1-acl-ipv4-basic-2000]rule permit source 192.168.1.0 0.0.0.255</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<pre><code>_步骤 2：在 R1 的公网接口上，配置 EASY IP，使内网可以访问互联网_
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/2]nat outbound 2000</span><br></pre></td></tr></table></figure>
+
+
+_效果测试：在 PC4 上 PING R5的环回口地址，PING 通说明可以访问互联网_
+![](http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F%E5%86%85%E7%BD%91ping%E9%80%9A%E5%85%AC%E7%BD%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&amp;Expires=1930605675&amp;Signature=2loxVUFahZASgstCCycerLRNw70%3D)</code></pre><ol start="6">
+<li><p><strong>要求业务网段访问互联网流量经过 R3，R2，R1，来回路径一致</strong></p>
+<p> 　　<em>分析：按照 OSPF 选路规则，内网各链路 Cost 一致，业务网段到互联网的流量会优先选择路由经过 R3，R1，而不会经过 R2<br> 　　要想使流量经过 R2，就需要通过修改链路 Cost，使 R1-R3 的 Cost 比 R1-R2-R3 的 Cost 大，这里把 R1-R3 的 Cost 修改为 1000，来影响 OSPF 选路</em></p>
+<p> <em>步骤 1：把 R1 和 R3 相连的接口的 Cost 修改为 1000</em></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1-GigabitEthernet0/1]ospf cost 1000</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-GigabitEthernet0/0]ospf cost 1000</span><br></pre></td></tr></table></figure>
+
+
+_效果测试：查看 R1的路由表，确认到达 `192.168.1.0/24` 网段的路由是经过 R1，R2，R3，而不是直接从R3走_
+![](http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/ospf%E5%AE%9E%E9%AA%8CH3CSE%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&amp;Expires=1930605842&amp;Signature=%2FoUG2h6H8jSUW%2FGilNHadT8rQH4%3D)</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/23/ACL实验/" class="archive-article-date">
-  	<time datetime="2019-09-23T03:36:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/23/ACL实验/">ACL实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/20/RIP实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T06:38:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/RIP实验/">RIP实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/20/OSPF实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T06:37:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/OSPF实验/">OSPF实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/10/09/ospf中级实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/20/静态路由实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T03:59:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/10/08/路由备份-聚合实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">路由备份&amp;聚合实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/静态路由实验/">静态路由实验</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/DHCP中继实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/DHCP中继实验/">DHCP中继实验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/单臂路由实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T13:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/单臂路由实验/">单臂路由实验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/三层交换实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/三层交换实验/">三层交换实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/IPv6实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/IPv6实验/">IPv6实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/DHCP实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/DHCP实验/">DHCP实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/10/OWASP-ZAP-使用/" class="archive-article-date">
-  	<time datetime="2019-09-10T13:53:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/OWASP-ZAP-使用/">OWASP ZAP 使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OWASP_ZAP</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2019/09/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/09/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -580,8 +402,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

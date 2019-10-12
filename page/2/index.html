@@ -161,6 +161,193 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-IPv6实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/IPv6实验/">IPv6实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/IPv6实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T12:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821879&Signature=rRn5LQEVKoAsq4p3WD1rc%2FQZLMM%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>在R1和R2上开启IPv6链路本地地址自动生成，测试是否能够使用链路本地地址互通</li>
+<li>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，测试是否能够互通</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>使 R1 R2 自动生成IPv6链路本地地址</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]interface g0/0</span><br><span class="line">[R2-GigabitEthernet0/0]ipv6 address auto</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看IP地址是否配置成功<code>display ipv6 interface brief</code>,且可以互通<br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2F%E8%B7%AF%E7%94%B1%E8%A1%A8.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821959&Signature=rhYTGmHJUqopeR47sGaCIrbFDdk%3D" alt><br> <img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/IPv6%E5%AE%9E%E9%AA%8C%2Fr2%20ping%20%E9%80%9A1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928821981&Signature=t%2BXToX0N4WNMzKbaJmuKsGCyfoM%3D" alt><br> 注意：在路由器上Ping ipv6链路本地地址，需要指定出接口，如<code>ping ipv6 -i g0/0 FE80::6875:CBFF:FE7A:105</code></p>
+</li>
+<li><p>为R1配置全球单播地址2001::1/64，为R2配置全球单播地址2001::2/64，发现能够互通,配置命令为</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::1 64</span><br></pre></td></tr></table></figure>
+
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]ipv6 address 2001::2 64</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/IPv6实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-DHCP实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/DHCP实验/">DHCP实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/09/18/DHCP实验/" class="archive-article-date">
+  	<time datetime="2019-09-18T12:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822076&Signature=uuRCYsYjzKQJ8Tyh8r0LC0uwX1Y%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示为r1配置IP地址</li>
+<li>配置r1为DHCP服务器，提供服务的地址池为<code>192.168.1.0/24</code>网段，网关为<code>192.168.1.254</code>，DNS服务器地址为<code>114.114.114.114</code></li>
+<li><code>192.168.1.10-192.168.1.20</code>为专用地址段，要求不能用于自动分配</li>
+<li>PC1和PC2都能获取到<code>192.168.1.0/24</code>网段的IP地址</li>
+</ol>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
+<li><p>配置 r1 g0/0 IP 地址略</p>
+</li>
+<li><p>配置 r1 上 DHCP 服务</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp enable    # 先开启DHCP服务</span><br><span class="line">[R1]dhcp server ip-pool 200   # 创建地址池，命名为200</span><br><span class="line">[R1-dhcp-pool-200]network 192.168.1.0 mask 255.255.255.0           # 地址池中网段</span><br><span class="line">[R1-dhcp-pool-200]gateway-list 192.168.1.254   # 网关</span><br><span class="line">[R1-dhcp-pool-200]dns-list 114.114.114.144   # DNS</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把<code>192.168.1.10-192.168.1.20</code>排除</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp server forbidden-ip 192.168.1.10 192.168.1.20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一段时间后发现pc1 pc2 自动获得 ip<br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822098&Signature=Uaoof3zC18zr0fATrUQQbZyfdw4%3D" alt="pc1"><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E5%AE%9E%E9%AA%8C%2Fpc2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822117&Signature=5n%2Bc1%2FRrj6Jz%2BlIWMtaVId6pExM%3D" alt="pc2"></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/DHCP实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OWASP-ZAP-使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -760,159 +947,6 @@
 
 
   
-    <article id="post-IP和TCP抓包分析实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/IP和TCP抓包分析实验/">IP和TCP抓包分析实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/04/IP和TCP抓包分析实验/" class="archive-article-date">
-  	<time datetime="2019-09-04T07:33:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="//www.tianxiangh.site/2019/09/04/IP和TCP抓包分析实验/1.jpeg" alt></p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">H3CNE实验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/IP和TCP抓包分析实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-创建AD域" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/29/创建AD域/">AD域</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/08/29/创建AD域/" class="archive-article-date">
-  	<time datetime="2019-08-29T12:30:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Windows-server-2012-创建-AD-域，创建域控，创建新用户"><a href="#Windows-server-2012-创建-AD-域，创建域控，创建新用户" class="headerlink" title="Windows server 2012 创建 AD 域，创建域控，创建新用户"></a>Windows server 2012 创建 AD 域，创建域控，创建新用户</h2><h3 id="实验环境：两台-Windows-server-2012-r2-虚拟机"><a href="#实验环境：两台-Windows-server-2012-r2-虚拟机" class="headerlink" title="实验环境：两台 Windows server 2012 r2 虚拟机"></a>实验环境：两台 Windows server 2012 r2 虚拟机</h3><h3 id="实验需求："><a href="#实验需求：" class="headerlink" title="实验需求："></a>实验需求：</h3><ol>
-<li>创建 AD 域 </li>
-<li>提升服务器为域控制器（DC）</li>
-<li>将第二台服务器添加到 AD 域</li></ol>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Windows</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/29/创建AD域/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1017,11 +1051,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">OWASP_ZAP</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+                <a href="javascript:void(0)" class="js-tag color1">H3CSE</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1034,10 +1076,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">房东的猫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Windows</a>
               </li>
             
             <div class="clearfix"></div>
