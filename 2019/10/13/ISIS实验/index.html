@@ -6,19 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: OWASP_ZAP | 第三人称</title>
+  <title>ISIS实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/OWASP-ZAP/index.html">
+  <meta name="description" content="实验拓扑 实验需求 按照图示配置IP地址 按照图示分区域配置 IS-IS，完成全网互通，NET 地址如图所示 要求 R1 和 R2/R3 只建立 Level-1 邻接关系 要求 R2 和 R3 只建立 Level-1 邻接关系 按照图示修改各链路 Cost 在 R2 和 R3 上配置路由渗透，使 R1 学习到 100.1.1.0、24 网段的明细路由，并选择最优路径 在骨干网上配置接口验证  实验">
+<meta name="keywords" content="H3CSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ISIS实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/10/13/ISIS实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示配置IP地址 按照图示分区域配置 IS-IS，完成全网互通，NET 地址如图所示 要求 R1 和 R2/R3 只建立 Level-1 邻接关系 要求 R2 和 R3 只建立 Level-1 邻接关系 按照图示修改各链路 Cost 在 R2 和 R3 上配置路由渗透，使 R1 学习到 100.1.1.0、24 网段的明细路由，并选择最优路径 在骨干网上配置接口验证  实验">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970260&Signature=3OVd2KIxjLbL4kH9Z6RSEkylyxg%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970360&Signature=WxGc9necCqbMQNjHw8JFQrFGZD8%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970420&Signature=6X31Zjvc7RYgD0IumxmGRjcsi4k%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F3.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970541&Signature=9rHLc0Qy4acS6mox7gGb1i%2B%2B74Q%3D">
+<meta property="og:updated_time" content="2019-10-13T12:43:11.115Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="ISIS实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置IP地址 按照图示分区域配置 IS-IS，完成全网互通，NET 地址如图所示 要求 R1 和 R2/R3 只建立 Level-1 邻接关系 要求 R2 和 R3 只建立 Level-1 邻接关系 按照图示修改各链路 Cost 在 R2 和 R3 上配置路由渗透，使 R1 学习到 100.1.1.0、24 网段的明细路由，并选择最优路径 在骨干网上配置接口验证  实验">
+<meta name="twitter:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970260&Signature=3OVd2KIxjLbL4kH9Z6RSEkylyxg%3D">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,61 +165,230 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-ISIS实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/10/OWASP-ZAP-使用/" class="archive-article-date">
-  	<time datetime="2019-09-10T13:53:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/OWASP-ZAP-使用/">OWASP ZAP 使用</a>
+    <h1 class="article-title" itemprop="name">
+      ISIS实验
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/10/13/ISIS实验/" class="archive-article-date">
+  	<time datetime="2019-10-13T12:35:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970260&Signature=3OVd2KIxjLbL4kH9Z6RSEkylyxg%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置IP地址</li>
+<li>按照图示分区域配置 IS-IS，完成全网互通，NET 地址如图所示</li>
+<li>要求 R1 和 R2/R3 只建立 Level-1 邻接关系</li>
+<li>要求 R2 和 R3 只建立 Level-1 邻接关系</li>
+<li>按照图示修改各链路 Cost</li>
+<li>在 R2 和 R3 上配置路由渗透，使 R1 学习到 <code>100.1.1.0、24</code> 网段的明细路由，并选择最优路径</li>
+<li>在骨干网上配置接口验证</li>
+</ol>
+<h3 id="实验解法："><a href="#实验解法：" class="headerlink" title="实验解法："></a>实验解法：</h3><ol>
+<li><p><strong>配置 IP 地址部分略</strong></p>
+</li>
+<li><p><strong>按照图示分区域配置 IS-IS，完成全网互通，NET 地址如图所示</strong></p>
+<p>　　<em>分析：IS-IS 的配置方式，是先创建 IS-IS 进程，配置 NET 地址，然后在需要宣告的接口下使能 IS-IS 即可</em></p>
+<p><em>步骤 1：在 R1 上创建 IS-IS 进程，并配置 NET 地址</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]isis 1</span><br><span class="line">[R1-isis-1]network-entity 49.0000.0000.0000.0001.00</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R1 连接 R2 和 R3 的接口上使能 IS-IS</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]isis enable 1</span><br><span class="line">[R1]interface g0/1</span><br><span class="line">[R1-GigabitEthernet0/1]isis enable 1</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：R2，R3，R4 上配置步骤与 R1 一致，在所有接口上使能 IS-IS。步骤略</em></p>
+</li>
+<li><p><strong>要求 R1 和 R2/R3 只建立 Level-1 邻接关系</strong></p>
+<p>　　<em>分析：IS-IS 的路由器默认级别是 Leve-1-2，R1，R2，R3 在同一个区域，所以 R1 和 R2/R3 会同时建立 Level-1 和 Level-2 的邻接关系，造成建立重复的邻接，增加路由器的性能压力，浪费网络带宽<br>　　R1 和 R2/R3 属于同一个区域，所以只需建立 Level-1 邻接关系，把 R1 的路由器级别修改为 Level-1 即可</em></p>
+<p><em>步骤1：把 R1 的路由器级别修改为 Level-1</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]isis 1</span><br><span class="line">[R1-isis-1]is-level level-1</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：检查 R1 的邻接关系，发现 R1 和 R2/R3 只剩下 Level-1 的邻接关系</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970360&Signature=WxGc9necCqbMQNjHw8JFQrFGZD8%3D" alt></p>
+</li>
+</ol>
+<ol start="4">
+<li><p><strong>要求 R2 和 R3 只建立 Level-1 邻接关系</strong></p>
+<p>　　<em>分析：IS-IS 的路由器默认级别是 Level-1-2，R2 和 R3 在同一个区域，所以 R2 和 R3 会同时建立 Level-1 和 Level-2 的邻接关系，造成建立重新邻接，增加路由器的性能压力，浪费网路带宽<br>　　R2 和 R3 属于同一个区域，所以只需建立 Level-1 的邻接关系；但是由于 R2 和 R3 同时都连接了其他区域路由器，所以无法修改路由器级别为 Level-1，只能通过修改接口邻接关系级别为 Level-1 来解决</em></p>
+<p><em>步骤 1：把 R2 和 R3 直连的接口邻接关系级别修改为 Level-1</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]interface g0/2</span><br><span class="line">[R2-GigabitEthernet0/2]isis circuit-level level-1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]interface g0/2</span><br><span class="line">[R3-GigabitEthernet0/2]isis circuit-level level-1</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：检查 R2 和 R3 邻接关系，发现 R2 和 R3 之间只剩下 Level-1 邻接关系</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F2.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970420&Signature=6X31Zjvc7RYgD0IumxmGRjcsi4k%3D" alt></p>
+</li>
+<li><p><strong>按照图示修改各链路 Cost</strong></p>
+<p><em>步骤 1：修改 Cost</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R1]interface g0/0</span><br><span class="line">[R1-GigabitEthernet0/0]isis cost 5</span><br><span class="line">[R1]interface g0/1</span><br><span class="line">[R1-GigabitEthernet0/1]isis cost 10</span><br></pre></td></tr></table></figure>
+
+<p><em>其余路由器修改 Cost 步骤略，注意一个网段两边接口都要改cost</em></p>
+</li>
+<li><p><strong>在 R2 和 R3 上配置路由渗透，使 R1 学习到 <code>100.1.1.0、24</code> 网段的明细路由，并选择最优路径</strong></p>
+<p>　　<em>分析：根据 IS-IS 协议原理，Level-2 的明细路由默认不会传递至 Level-1 路由器上，而会由该区域的 Level-1-2 路由器自动产生一条默认路由发布至 Level-1 路由器。该默认路由不会计算区域外部的 Cost，所以在本实验环境中，R1 上到达 <code>100.1.1.0/24</code> 网段，会选择经过 R2。该路径并非是到达该网段的最优路径<br>　　要实现 R1 选择最优路径，需要在 Level-1-2 路由器上配置路由渗透，把 Level-2 的明细路由允许发布至 Level-1 路由器，才会使 R1 学习到最优的到达 <code>100.1.1.0/24</code> 网段的最优路由</em></p>
+<p><em>步骤 1：在 R2 和 R3 上配置路由渗透</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R2]isis 1</span><br><span class="line">[R2-isis-1]address-family ipv4</span><br><span class="line">[R2-isis-1-ipv4]import-route isis level-2 into level-1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R3]isis 1</span><br><span class="line">[R3-isis-1]address-family ipv4</span><br><span class="line">[R3-isis-1-ipv4]import-route isis level-2 into level-1</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：检查 R1 路由表，发现已经学习到 <code>100.1.1.0/24</code> 网段的明细路由，并指向 R3</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2Fisis%E5%AE%9E%E9%AA%8C%2F3.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1930970541&Signature=9rHLc0Qy4acS6mox7gGb1i%2B%2B74Q%3D" alt></p>
+</li>
+</ol>
+<ol start="7">
+<li><p><strong>在骨干网上配置接口验证</strong></p>
+<p>　　分析：在 IS-IS 中，由连续的 Level-2 和 Level-1-2 路由器组成的网络为骨干网，在本拓扑中，R2，R4，R3 组成的网络即为骨干网，需要在其互联的接口上配置接口验证</p>
+<p><em>步骤 1：在 R2，R4，R3 互联的接口上配置 IS-IS 接口验证</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-GigabitEthernet0/1]isis authentication-mode simple plain 123456</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3-GigabitEthernet0/1]isis authentication-mode simple plain 123456</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R4-GigabitEthernet0/0]isis authentication-mode simple plain 123456</span><br><span class="line">[R4-GigabitEthernet0/1]isis authentication-mode simple plain 123456</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：重启接口或重置 IS-IS 进程后，发现 IS-IS 邻接关系仍然能够成功建立，说明验证配置正确</em></p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OWASP_ZAP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/10/13/ISIS实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/10/13/OSPF综合排错实验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          OSPF综合排错实验
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/10/09/ospf中级实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OSPF中级实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -247,9 +422,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

@@ -6,19 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: OWASP_ZAP | 第三人称</title>
+  <title>OSPF综合排错实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/OWASP-ZAP/index.html">
+  <meta name="description" content="实验拓扑 实验需求 按照图示配置 IP 地址，所有路由器配置环回口 IP 地址为 X.X.X.X/32 作为 Router-id，X 为设备编号（R7 除外） 按照图示分区域配置 OSPF R1 和 R6 上分别配置环回口来模拟业务网段，如拓扑图所示；业务网段中不允许出现协议报文 正常情况下，Area 10 和 Area 100 的业务流量经过 R3-R5，当 R3 和 R5 之间的链路故障时，流">
+<meta name="keywords" content="H3CSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OSPF综合排错实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/10/13/OSPF综合排错实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示配置 IP 地址，所有路由器配置环回口 IP 地址为 X.X.X.X/32 作为 Router-id，X 为设备编号（R7 除外） 按照图示分区域配置 OSPF R1 和 R6 上分别配置环回口来模拟业务网段，如拓扑图所示；业务网段中不允许出现协议报文 正常情况下，Area 10 和 Area 100 的业务流量经过 R3-R5，当 R3 和 R5 之间的链路故障时，流">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.dengfm.com/15235489182170.jpg">
+<meta property="og:updated_time" content="2019-10-13T15:48:14.587Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="OSPF综合排错实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置 IP 地址，所有路由器配置环回口 IP 地址为 X.X.X.X/32 作为 Router-id，X 为设备编号（R7 除外） 按照图示分区域配置 OSPF R1 和 R6 上分别配置环回口来模拟业务网段，如拓扑图所示；业务网段中不允许出现协议报文 正常情况下，Area 10 和 Area 100 的业务流量经过 R3-R5，当 R3 和 R5 之间的链路故障时，流">
+<meta name="twitter:image" content="http://img.dengfm.com/15235489182170.jpg">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,61 +162,219 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-OSPF综合排错实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/10/OWASP-ZAP-使用/" class="archive-article-date">
-  	<time datetime="2019-09-10T13:53:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/10/OWASP-ZAP-使用/">OWASP ZAP 使用</a>
+    <h1 class="article-title" itemprop="name">
+      OSPF综合排错实验
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/10/13/OSPF综合排错实验/" class="archive-article-date">
+  	<time datetime="2019-10-13T12:36:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://img.dengfm.com/15235489182170.jpg" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址，所有路由器配置环回口 IP 地址为 <code>X.X.X.X/32</code> 作为 Router-id，X 为设备编号（R7 除外）</li>
+<li>按照图示分区域配置 OSPF</li>
+<li>R1 和 R6 上分别配置环回口来模拟业务网段，如拓扑图所示；业务网段中不允许出现协议报文</li>
+<li>正常情况下，Area 10 和 Area 100 的业务流量经过 R3-R5，当 R3 和 R5 之间的链路故障时，流量自动切换到 R2-R4</li>
+<li>R2 和 R4 之间的链路只对到 <code>192.168.2.0</code> 的流量提供备份</li>
+<li>Area 100 配置为 Stub 区域</li>
+<li>其他区域不允许出现 Area 10 的业务网段的明细路由</li>
+<li>适当调整链路 Cost，避免出现等价路由</li>
+<li>为了保证协议安全，Area 0 配置区域验证，验证密钥为 <code>123456</code></li>
+<li>R2 作为网络出口，配置默认路由指向 R7，并引入到 OSPF</li>
+<li>R2 上配置 EASY IP，只对 <code>192.168.0.0/24</code> 和 <code>192.168.2.0/24</code> 提供访问互联网功能</li>
+<li>排除全部网络故障，并完成排错报告</li>
+</ol>
+<hr>
+<h3 id="实验拓扑下载"><a href="#实验拓扑下载" class="headerlink" title="实验拓扑下载"></a>实验拓扑下载</h3><p><a href="http://img.dengfm.com/ospf_zh_ts.rar" target="_blank" rel="noopener">OSPF 综合排错拓扑下载</a></p>
+<h3 id="排错步骤"><a href="#排错步骤" class="headerlink" title="排错步骤"></a>排错步骤</h3><ol>
+<li><p>故障一：</p>
+<ul>
+<li>故障现象：R1 R3 邻接关系没有建立；R3 R5 邻接关系没有建立；R5 R6 邻接关系没有建立；R4 R6 邻接关系没有建立；</li>
+<li>故障分析：R3错误宣告网段10.2.2.0/24到区域0；R5 Area 0 错误配置区域验证密钥；R6上Area 100 没有配置为 Stub 区域</li>
+<li>解决方法：<ul>
+<li>重新配置命令</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">R3:</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]undo network 10.2.2.0 0.0.0.255</span><br><span class="line">[R3-ospf-1-area-0.0.0.0]area 10</span><br><span class="line">[R3-ospf-1-area-0.0.0.10]network 10.2.2.0 0.0.0.255</span><br><span class="line">R5：</span><br><span class="line">[R5-ospf-1-area-0.0.0.0]authentication-mode simple plain 123456</span><br><span class="line">R6：</span><br><span class="line">[R6-ospf-1-area-0.0.0.100]stub</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>故障二：</p>
+<ul>
+<li>故障现象：到达192.168.2.0/24网段路由经过R2 R4；没有到达192.168.3.0/24的路由；没有满足R2 和 R4 之间的链路只对到 <code>192.168.2.0</code> 的流量提供备份这个需求</li>
+<li>故障分析：忘记在R2 R4接口增大开销；R6网段宣告错误，写成了186；</li>
+<li>解决方法：<ul>
+<li>重新配置命令</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R2:</span><br><span class="line">[R2-GigabitEthernet0/2]ospf cost 1000</span><br><span class="line">R4：</span><br><span class="line">[R4-GigabitEthernet0/1]ospf cost 1000</span><br><span class="line">R6：</span><br><span class="line">[R6-ospf-1-area-0.0.0.100]undo  network 192.186.3.0 0.0.0.255</span><br><span class="line">[R6-ospf-1-area-0.0.0.100]network 192.168.3.0 0.0.0.255</span><br><span class="line">R4：</span><br><span class="line">[R4-ospf-1-area-0.0.0.100]abr-summary 192.168.3.0 24 not-advertise</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>故障三：</p>
+<ul>
+<li>故障现象：R3 对192.168.0.0/24和192.168.1.0/24聚合错误</li>
+<li>故障分析：配置错误</li>
+<li>解决方法：<ul>
+<li>重新配置命令</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">R3:</span><br><span class="line">[R3-ospf-1-area-0.0.0.10]undo abr-summary 192.168.0.0 255.255.0.0</span><br><span class="line">[R3-ospf-1-area-0.0.0.10]abr-summary 192.168.0.0 255.255.254.0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>故障四：</p>
+<ul>
+<li>故障现象：路由表中出现等价路由；R2引入默认路由配置错误</li>
+<li>故障分析：没有改cost</li>
+<li>解决方法：<ul>
+<li>重新配置命令</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">R1：</span><br><span class="line">[R1-GigabitEthernet0/0]ospf cost 300</span><br><span class="line">[R1-GigabitEthernet0/1]ospf cost 400</span><br><span class="line">R2：</span><br><span class="line">[R2-GigabitEthernet0/0]ospf cost 300</span><br><span class="line">[R2-GigabitEthernet0/1]ospf cost 500</span><br><span class="line">R3：</span><br><span class="line">[R3-GigabitEthernet0/1]ospf cost 500</span><br><span class="line">[R3-GigabitEthernet0/0]ospf cost 400</span><br><span class="line">R2：</span><br><span class="line">[R2-ospf-1]default-route-advertise</span><br><span class="line">[R2-ospf-1]undo import-route static</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OWASP_ZAP</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/10/13/OSPF综合排错实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/10/13/ISIS实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ISIS实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -247,9 +408,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
