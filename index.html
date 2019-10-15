@@ -161,6 +161,241 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-路由过滤路由引入排错实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/路由过滤路由引入排错实验/">路由过滤路由引入排错实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/10/14/路由过滤路由引入排错实验/" class="archive-article-date">
+  	<time datetime="2019-10-14T14:06:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://img.dengfm.com/15249060985397.jpg" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址，总部和分支 A、分支 B 各自使用 loopback 口模拟业务网段</li>
+<li>公司业务流分为 A 流和 B 流，网段如图所示</li>
+<li>总部内部配置 OSPF 互通，总部和分支 A、分支 B 配置 RIP 互通</li>
+<li>在 R1 上配置 OSPF 和 RIP 双向引入，要求总部和分支之间只有 A 流互通</li>
+<li>配置路由过滤，使分支 A 与分支 B 只有 B 流可以互通</li>
+<li>OSPF 区域不允许出现 RIP 协议报文</li>
+<li>排除所有网络故障，使环境符合需求，并完成排错报告</li>
+</ol>
+<h3 id="实验拓扑下载"><a href="#实验拓扑下载" class="headerlink" title="实验拓扑下载"></a>实验拓扑下载</h3><p><a href="http://img.dengfm.com/lygl_yr_ts.rar" target="_blank" rel="noopener">路由过滤&amp;路由引入排错拓扑下载</a></p>
+<h3 id="排错步骤"><a href="#排错步骤" class="headerlink" title="排错步骤"></a>排错步骤</h3><ol>
+<li><p>故障一：</p>
+<ul>
+<li>故障现象：R3 R4上没有 rip 路由；</li>
+<li>故障分析：在R3 R4 的ACL basic 2000 视图下发现两者都只配置了默认拒绝的规则，导致所有路由都被拒绝了</li>
+<li>解决方法：<ul>
+<li>重新配置一条允许的规则</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R3:</span><br><span class="line">[R3-acl-ipv4-basic-2000]rule 5 permit</span><br><span class="line"></span><br><span class="line">R4：</span><br><span class="line">[R4-acl-ipv4-basic-2000]rule 5 permit</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>故障二：</p>
+<ul>
+<li>故障现象：R1 g0/0口没有配置静默接口，导致ospf上有RIP报文；R2上没有出现到达业务A流路由；R3 R4上没有到达总部A流的路由</li>
+<li>故障分析：在R1的ospf视图下dis  this 发现路由引入配置错误；在R1的rip视图下dis  this 发现路由引入配置错误</li>
+<li>解决方法：<ul>
+<li>重新配置命令</li>
+<li>命令：   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R1:</span><br><span class="line">[R1-rip-1]silent-interface g0/0</span><br><span class="line">[R1-ospf-1]import-route rip 1 route-policy r2o</span><br><span class="line">[R1-rip-1]import-route ospf 1 route-policy o2r</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/14/路由过滤路由引入排错实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-路由过滤路由引入实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/10/14/路由过滤路由引入实验/">路由过滤路由引入实验</a>
+    </h1>
+  
+
+        
+        
+<a href="/2019/10/14/路由过滤路由引入实验/" class="archive-article-date">
+  	<time datetime="2019-10-14T14:06:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062467&Signature=7rdZ2yON8MZU13NobiPMbwInoaM%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址，R1，R3，R4 上使用 loopback 口模拟业务网段</li>
+<li>R1 和 R2 运行 RIPv2，R2，R3 和 R4 运行 OSPF，各自协议内部互通</li>
+<li>在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部</li>
+<li>使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 <code>prefix-list</code> 进行匹配</li>
+<li>OSPF 区域中不能出现 RIP 协议报文</li>
+</ol>
+<hr>
+<h3 id="实验解法"><a href="#实验解法" class="headerlink" title="实验解法"></a>实验解法</h3><ol>
+<li><p><strong>配置 IP 地址部分略</strong></p>
+</li>
+<li><p><strong>配置 RIP 和 OSPF 部分略,注意 RIP 只能做主类宣告</strong></p>
+</li>
+<li><p><strong>在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部</strong></p>
+<p>　　分析：根据需求，得知需要在 R2 上把 RIP 的路由全部引入到 OSPF，把 OSPF 的 <code>192.168.2.1/32</code> 和 <code>192.168.3.1/32</code> 网段的路由引入到 RIP，<code>192.168.4.1/32</code> 和 <code>192.168.5.1/32</code> 网段的路由要在引入的时候过滤掉<br>　　所以在 RIP 引入到 OSPF 时，不用配置任何路由策略，但是在 OSPF 引入到 RIP 时，需要使用路由策略来不匹配 R4 上的业务网段<br>　　根据路由策略的匹配流程，只需要配置一个节点来抓取 R4 上的业务网段；这里不涉及到修改路由属性，所以不需要配置任何 Apply 子句</p>
+<p><em>步骤 1：在 R2 上创建 ACL 来拒绝 R4 上的业务网段路由，同时要创建一个规则来允许其他网段通过</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R2]acl basic 2000</span><br><span class="line">[R2-acl-ipv4-basic-2000]rule 0 deny source 192.168.4.0 0.0.1.255</span><br><span class="line">[R2-acl-ipv4-basic-2000]rule 5 permit</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R2 上创建路由策略，关联 ACL</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]route-policy o2r permit node 10</span><br><span class="line">[R2-route-policy-o2r-10]if-match ip address acl 2000</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：在 RIP 中引入 OSPF 路由，调用路由策略，只引入 R2 上的业务网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-rip-1]import-route ospf route-policy o2r</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 4：在 OSPF 中引入 RIP 路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-ospf-1]import-route rip</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R1 上查看路由表，发现没有学习到了 R4 的业务网段路由，在 R3 上查看路由表，学习到了 R1 上的业务网段路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Aospf%E5%BC%95%E5%85%A5rip%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062702&Signature=9E2ViQKtOyNT8QZQprH9qxgsboQ%3D" alt><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Arip%E5%BC%95%E5%85%A5ospf%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062590&Signature=UgiAsJZD5Q2Jln6q5YiIoChv2nM%3D" alt></p>
+</li>
+<li><p><strong>使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 <code>prefix-list</code> 进行匹配</strong></p>
+<p>　　<em>分析：默认情况下，R1 的业务网段路由会被 R2 引入后，以 Type—5 LSA 进入 OSPF，传递到所有 OSPF 区域<br>　　这里要求 R4 不能学习到 R1 的业务网段路由，所以要在 R4 上对路由进行过滤<br>　　由于 R1 的业务网段路由是以 Type-5 LSA 的形式传递的，所以无法使用过滤 Type-3 LSA 的方法进行过滤，只能对计算出的路由结果进行过滤<br>　　要求使用 <code>prefix-list</code> 进行路由匹配。R1 的业务网段聚合后属于 <code>192.168.0.0/23</code> 网段，但是由于使用环回口模拟，所以路由的子网掩码为 32 位，所以需要配置掩码范围为 <code>less-eq 32</code>，动作为拒绝，另外还需配置一条规则用于允许所有</em></p>
+<p><em>步骤 1：在 R4 上创建 <code>prefix-list</code>，拒绝 <code>192.168.0.0/23</code> 地址范围，且掩码范围 <code>less-eq 32</code> 的路由，且允许其他所有路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R4]ip prefix-list guolv index 10 deny 192.168.0.0 23 less-equal 32</span><br><span class="line">[R4]ip prefix-list guolv index 20 permit 0.0.0.0 0 less-equal 32</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R4 上进入 OSPF 视图，配置路由过滤，调用上一步创建的 <code>prefix-list</code></em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R4-ospf-1]filter-policy prefix-list guolv import</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R4 上查看路由表，发现已经无法学习到 R1 的业务网段路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2FR4%E6%B2%A1%E6%9C%89R1%E4%B8%9A%E5%8A%A1%E7%BD%91%E6%AE%B5%E8%B7%AF%E7%94%B1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062840&Signature=euWGHaXyfX4%2FyLkDyFxSF5QMNS4%3D" alt></p>
+</li>
+</ol>
+<ol start="5">
+<li><p><strong>OSPF 区域中不能出现 RIP 协议报文</strong></p>
+<p>　　分析：由于 R2 要通过 g0/0 口和 R1 运行 RIP，所以需要在 RIP 中宣告 g0/0 口所在网段，但是 RIP 只能进行主类网络宣告，而连接 OSPF 区域的 g0/1 口和 g0/0 口属于同一个主类网络，所以会造成 g0/1 口被迫宣告进 RIP，导致 RIP 向 OSPF 区域发送协议报文<br>　　这里需要在 R2 的 RIP 协议中，把连接 OSPF 区域的接口配置为静默接口</p>
+<p><em>步骤 1：在 R2 的 RIP 中，把 g0/1 口配置为静默接口</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-rip-1]silent-interface g0/1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/10/14/路由过滤路由引入实验/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OSPF综合排错实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1102,222 +1337,6 @@ _效果测试：查看 R1的路由表，确认到达 `192.168.1.0/24` 网段的�
 
 
   
-    <article id="post-静态路由实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/静态路由实验/">静态路由实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/20/静态路由实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T03:59:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1%2F%E6%8B%93%E6%89%91.JPG?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928956564&Signature=LkblV3W%2Bd682NqljM25gF%2FFP2R4%3D" alt></p>
-<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
-<li>按照图示配置 IP 地址</li>
-<li>按照如下路径规划配置静态路由，实现连接 PC 的业务网段互通<ol>
-<li><code>192.168.1.0/24</code> 网段到达 <code>192.168.2.0/24</code> 网段经过 R1，R2，R3</li>
-<li><code>192.168.2.0/24</code> 网段到达 <code>192.168.1.0/24</code> 网段经过 R3，R4，R1</li>
-<li><code>192.168.1.0/24</code> 网段到达 <code>192.168.3.0/24</code> 网段经过 R1，R4，R5</li>
-<li><code>192.168.2.0/24</code> 网段到达 <code>192.168.3.0/24</code> 网段经过 R3，R4，R5</li>
-<li><code>192.168.3.0/24</code> 网段到达 <code>192.168.1.0/24</code> 网段和 <code>192.168.2.0/24</code> 网段的路由来回一致</li>
-<li>R5 上不允许出现到达其他业务网段的明细路由</li>
-<li>所有经过 R4 和 R5 的流量通过等价路由实现负载分担</li>
-</ol>
-</li>
-</ol>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
-<li>下一跳为数据报文从接口出发到达的下一个IP地址，一定是对端路由器接口的IP地址</li>
-<li>R5 上不允许出现到达其他业务网段的明细路由，且经过 R4 和 R5 的流量通过等价路由实现负载分担，则 R5 可以设置两条默认路由，下一跳地址分别为<code>10.5.5.4</code> 和<code>10.6.6.4</code>,因为同一来源Cost相等的路由会形成等价路由，数据流会在等价路由上自动负载分担</li>
-</ol>
-<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li><p><strong>PC配置IP地址、网关，路由器各个接口配置IP地址</strong></p>
-</li>
-<li><p><strong>按照需求配置静态路由，实现连接 PC 的业务网段互通</strong></p>
-<p> <em>步骤 1：配置 192.168.1.0/24 网段到 192.168.2.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 192.168.2.0 24 10.2.2.2</span><br><span class="line">[R2]ip route-static 192.168.2.0 24 10.3.3.3</span><br></pre></td></tr></table></figure>
-
-<p> <em>步骤 2：配置 192.168.2.0/24 网段到 192.168.1.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R3]ip route-static 192.168.1.0 24 10.4.4.4</span><br><span class="line">[R4]ip route-static 192.168.1.0 24 10.1.1.1</span><br></pre></td></tr></table></figure>
-
-<p> <em>步骤 3：配置 192.168.1.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 192.168.3.0 24 10.1.1.4</span><br><span class="line">[R4]ip route-static 192.168.3.0 24 10.5.5.5</span><br><span class="line">[R4]ip route-static 192.168.3.0 24 10.6.6.5</span><br></pre></td></tr></table></figure>
-
-<p> <em>步骤 4：配置 192.168.2.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R3]ip route-static 192.168.3.0 24 10.4.4.4</span><br></pre></td></tr></table></figure>
-
-<p> <em>步骤 5：配置 192.168.2.0/24 网段到 192.168.3.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R5]ip route-static 0.0.0.0 0 10.5.5.4</span><br><span class="line">[R5]ip route-static 0.0.0.0 0 10.6.6.4</span><br></pre></td></tr></table></figure>
-
-<p> <em>步骤 6：配置 192.168.3.0/24 网段到 192.168.2.0 网段的静态路由</em></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R4]ip route-static 192.168.2.0 24 10.4.4.3</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/20/静态路由实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-DHCP中继实验" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/DHCP中继实验/">DHCP中继实验</a>
-    </h1>
-  
-
-        
-        
-<a href="/2019/09/18/DHCP中继实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E4%B8%AD%E7%BB%A7%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822027&Signature=nkHUB6oVYhMXAh191b%2FnA5r%2FR50%3D" alt></p>
-<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
-<li>按照图示配置IP地址</li>
-<li>配置R1为DHCP服务器，能够跨网段为<code>192.168.2.0/24</code>网段自动分配IP地址。要求分配DNS地址为<code>114.114.114.114</code></li>
-<li>PC3获取IP地址后，能够访问到<code>192.168.1.1</code></li>
-</ol>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
-<li>默认情况下，DHCP只能为和本机处于同一网段的客户端分配IP地址。现在要求跨网段分配IP地址，就需要配置DHCP中继来实现</li>
-<li>在R1上创建的地址池必须要宣告<code>192.168.2.0/24</code>网段。DHCP分配的网关地址应该是<code>192.168.2.0/24</code>网段的真实网关，根据拓扑得知，网关就是R2的g0/1接口，IP地址为<code>192.168.2.254</code></li>
-<li>DHCP的IP地址请求和应答报文都是广播形式发送，默认情况下，是无法穿越路由器的，所以需要在R2上开启DHCP中继功能，使DHCP报文能够跨网段转发</li>
-<li>另外，<code>192.168.2.0/24</code>网段对R1来说，是非直连网段，要使R1和PC3连通，R1上必须具有到达<code>192.168.2.0/24</code>网段的路由信息</li>
-</ul>
-<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><ol>
-<li><p>配置R1</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[R1]dhcp enable</span><br><span class="line">[R1]dhcp server ip-pool 1</span><br><span class="line">[R1-dhcp-pool-1]network 192.168.2.0 mask 255.255.255.0</span><br><span class="line">[R1-dhcp-pool-1]gateway-list 192.168.2.254</span><br><span class="line">[R1-dhcp-pool-1]dns-list 114.114.114.114</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在R2上开启DHCP功能，并在连接客户端的接口（g0/1）上开启DHCP中继功能，并指定DHCP服务器的IP地址</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[R2]dhcp enable</span><br><span class="line">[R2]interface g0/1</span><br><span class="line">[R2-GigabitEthernet0/1]dhcp select relay</span><br><span class="line">[R2-GigabitEthernet0/1]dhcp relay server-address 192.168.1.1</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在R1上配置默认路由，使R1的DHCP协议报文能够到达PC3 </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R1]ip route-static 0.0.0.0 0 192.168.1.2</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一段时间后，发现PC3 自动获取 IP</p>
-</li>
-</ol>
-<p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/DHCP%E4%B8%AD%E7%BB%A7%E5%AE%9E%E9%AA%8C%2Fpc%20ip.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1928822048&Signature=nuPXERE%2F4pVquVxxmxx2B%2BCHdes%3D" alt></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/DHCP中继实验/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1422,11 +1441,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
+                <a href="javascript:void(0)" class="js-tag color1">H3CSE</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">H3CSE</a>
+                <a href="javascript:void(0)" class="js-tag color3">H3CNE实验</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -6,19 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://www.tianxiangh.site">
-  <title>Tag: H3CNE | 第三人称</title>
+  <title>路由过滤路由引入实验 | 第三人称</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="安全小白，多多指教">
-<meta name="keywords" content="安全,极客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="第三人称">
-<meta property="og:url" content="https://www.tianxiangh.site/tags/H3CNE/index.html">
+  <meta name="description" content="实验拓扑 实验需求 按照图示配置 IP 地址，R1，R3，R4 上使用 loopback 口模拟业务网段 R1 和 R2 运行 RIPv2，R2，R3 和 R4 运行 OSPF，各自协议内部互通 在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部 使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 prefix-lis">
+<meta name="keywords" content="H3CSE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由过滤路由引入实验">
+<meta property="og:url" content="https://www.tianxiangh.site/2019/10/14/路由过滤路由引入实验/index.html">
 <meta property="og:site_name" content="第三人称">
-<meta property="og:description" content="安全小白，多多指教">
+<meta property="og:description" content="实验拓扑 实验需求 按照图示配置 IP 地址，R1，R3，R4 上使用 loopback 口模拟业务网段 R1 和 R2 运行 RIPv2，R2，R3 和 R4 运行 OSPF，各自协议内部互通 在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部 使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 prefix-lis">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062467&Signature=7rdZ2yON8MZU13NobiPMbwInoaM%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Aospf%E5%BC%95%E5%85%A5rip%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062702&Signature=9E2ViQKtOyNT8QZQprH9qxgsboQ%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Arip%E5%BC%95%E5%85%A5ospf%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062590&Signature=UgiAsJZD5Q2Jln6q5YiIoChv2nM%3D">
+<meta property="og:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2FR4%E6%B2%A1%E6%9C%89R1%E4%B8%9A%E5%8A%A1%E7%BD%91%E6%AE%B5%E8%B7%AF%E7%94%B1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062840&Signature=euWGHaXyfX4%2FyLkDyFxSF5QMNS4%3D">
+<meta property="og:updated_time" content="2019-10-14T14:21:05.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第三人称">
-<meta name="twitter:description" content="安全小白，多多指教">
+<meta name="twitter:title" content="路由过滤路由引入实验">
+<meta name="twitter:description" content="实验拓扑 实验需求 按照图示配置 IP 地址，R1，R3，R4 上使用 loopback 口模拟业务网段 R1 和 R2 运行 RIPv2，R2，R3 和 R4 运行 OSPF，各自协议内部互通 在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部 使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 prefix-lis">
+<meta name="twitter:image" content="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062467&Signature=7rdZ2yON8MZU13NobiPMbwInoaM%3D">
   
     <link rel="alternative" href="/atom.xml" title="第三人称" type="application/atom+xml">
   
@@ -159,415 +165,208 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-路由过滤路由引入实验" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      路由过滤路由引入实验
+    </h1>
+  
+
+        
+        
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2019/10/14/路由过滤路由引入实验/" class="archive-article-date">
+  	<time datetime="2019-10-14T14:06:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-14</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="实验拓扑"><a href="#实验拓扑" class="headerlink" title="实验拓扑"></a>实验拓扑</h3><p><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8B%93%E6%89%91.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062467&Signature=7rdZ2yON8MZU13NobiPMbwInoaM%3D" alt></p>
+<h3 id="实验需求"><a href="#实验需求" class="headerlink" title="实验需求"></a>实验需求</h3><ol>
+<li>按照图示配置 IP 地址，R1，R3，R4 上使用 loopback 口模拟业务网段</li>
+<li>R1 和 R2 运行 RIPv2，R2，R3 和 R4 运行 OSPF，各自协议内部互通</li>
+<li>在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部</li>
+<li>使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 <code>prefix-list</code> 进行匹配</li>
+<li>OSPF 区域中不能出现 RIP 协议报文</li>
+</ol>
+<hr>
+<h3 id="实验解法"><a href="#实验解法" class="headerlink" title="实验解法"></a>实验解法</h3><ol>
+<li><p><strong>配置 IP 地址部分略</strong></p>
+</li>
+<li><p><strong>配置 RIP 和 OSPF 部分略,注意 RIP 只能做主类宣告</strong></p>
+</li>
+<li><p><strong>在 RIP 和 OSPF 间配置双向路由引入，要求除 R4 上的业务网段以外，其他业务网段路由都引入到对方协议内部</strong></p>
+<p>　　分析：根据需求，得知需要在 R2 上把 RIP 的路由全部引入到 OSPF，把 OSPF 的 <code>192.168.2.1/32</code> 和 <code>192.168.3.1/32</code> 网段的路由引入到 RIP，<code>192.168.4.1/32</code> 和 <code>192.168.5.1/32</code> 网段的路由要在引入的时候过滤掉<br>　　所以在 RIP 引入到 OSPF 时，不用配置任何路由策略，但是在 OSPF 引入到 RIP 时，需要使用路由策略来不匹配 R4 上的业务网段<br>　　根据路由策略的匹配流程，只需要配置一个节点来抓取 R4 上的业务网段；这里不涉及到修改路由属性，所以不需要配置任何 Apply 子句</p>
+<p><em>步骤 1：在 R2 上创建 ACL 来拒绝 R4 上的业务网段路由，同时要创建一个规则来允许其他网段通过</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[R2]acl basic 2000</span><br><span class="line">[R2-acl-ipv4-basic-2000]rule 0 deny source 192.168.4.0 0.0.1.255</span><br><span class="line">[R2-acl-ipv4-basic-2000]rule 5 permit</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R2 上创建路由策略，关联 ACL</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R2]route-policy o2r permit node 10</span><br><span class="line">[R2-route-policy-o2r-10]if-match ip address acl 2000</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 3：在 RIP 中引入 OSPF 路由，调用路由策略，只引入 R2 上的业务网段</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-rip-1]import-route ospf route-policy o2r</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 4：在 OSPF 中引入 RIP 路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-ospf-1]import-route rip</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R1 上查看路由表，发现没有学习到了 R4 的业务网段路由，在 R3 上查看路由表，学习到了 R1 上的业务网段路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Aospf%E5%BC%95%E5%85%A5rip%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062702&Signature=9E2ViQKtOyNT8QZQprH9qxgsboQ%3D" alt><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2F%E6%8A%8Arip%E5%BC%95%E5%85%A5ospf%E6%88%90%E5%8A%9F.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062590&Signature=UgiAsJZD5Q2Jln6q5YiIoChv2nM%3D" alt></p>
+</li>
+<li><p><strong>使用路由过滤，使 R4 无法学习到 R1 的业务网段路由，要求使用 <code>prefix-list</code> 进行匹配</strong></p>
+<p>　　<em>分析：默认情况下，R1 的业务网段路由会被 R2 引入后，以 Type—5 LSA 进入 OSPF，传递到所有 OSPF 区域<br>　　这里要求 R4 不能学习到 R1 的业务网段路由，所以要在 R4 上对路由进行过滤<br>　　由于 R1 的业务网段路由是以 Type-5 LSA 的形式传递的，所以无法使用过滤 Type-3 LSA 的方法进行过滤，只能对计算出的路由结果进行过滤<br>　　要求使用 <code>prefix-list</code> 进行路由匹配。R1 的业务网段聚合后属于 <code>192.168.0.0/23</code> 网段，但是由于使用环回口模拟，所以路由的子网掩码为 32 位，所以需要配置掩码范围为 <code>less-eq 32</code>，动作为拒绝，另外还需配置一条规则用于允许所有</em></p>
+<p><em>步骤 1：在 R4 上创建 <code>prefix-list</code>，拒绝 <code>192.168.0.0/23</code> 地址范围，且掩码范围 <code>less-eq 32</code> 的路由，且允许其他所有路由</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[R4]ip prefix-list guolv index 10 deny 192.168.0.0 23 less-equal 32</span><br><span class="line">[R4]ip prefix-list guolv index 20 permit 0.0.0.0 0 less-equal 32</span><br></pre></td></tr></table></figure>
+
+<p><em>步骤 2：在 R4 上进入 OSPF 视图，配置路由过滤，调用上一步创建的 <code>prefix-list</code></em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R4-ospf-1]filter-policy prefix-list guolv import</span><br></pre></td></tr></table></figure>
+
+<p><em>效果测试：在 R4 上查看路由表，发现已经无法学习到 R1 的业务网段路由</em><br><img src="http://tianxiangh-site.oss-cn-beijing.aliyuncs.com/H3CSE%2F%E8%B7%AF%E7%94%B1%E8%BF%87%E6%BB%A4%26%E8%B7%AF%E7%94%B1%E5%BC%95%E5%85%A5%E5%AE%9E%E9%AA%8C%2FR4%E6%B2%A1%E6%9C%89R1%E4%B8%9A%E5%8A%A1%E7%BD%91%E6%AE%B5%E8%B7%AF%E7%94%B1.jpg?OSSAccessKeyId=LTAI4FeQMLC4SRnZSf9zjY6L&Expires=1931062840&Signature=euWGHaXyfX4%2FyLkDyFxSF5QMNS4%3D" alt></p>
+</li>
+</ol>
+<ol start="5">
+<li><p><strong>OSPF 区域中不能出现 RIP 协议报文</strong></p>
+<p>　　分析：由于 R2 要通过 g0/0 口和 R1 运行 RIP，所以需要在 RIP 中宣告 g0/0 口所在网段，但是 RIP 只能进行主类网络宣告，而连接 OSPF 区域的 g0/1 口和 g0/0 口属于同一个主类网络，所以会造成 g0/1 口被迫宣告进 RIP，导致 RIP 向 OSPF 区域发送协议报文<br>　　这里需要在 R2 的 RIP 协议中，把连接 OSPF 区域的接口配置为静默接口</p>
+<p><em>步骤 1：在 R2 的 RIP 中，把 g0/1 口配置为静默接口</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[R2-rip-1]silent-interface g0/1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/10/05/NAT实验/" class="archive-article-date">
-  	<time datetime="2019-10-05T08:45:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/05/NAT实验/">NAT实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CSE</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://www.tianxiangh.site/2019/10/14/路由过滤路由引入实验/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/20/OSPF实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T06:37:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/10/14/路由过滤路由引入排错实验/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          路由过滤路由引入排错实验
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/10/13/OSPF综合排错实验/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OSPF综合排错实验</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/OSPF实验/">OSPF实验</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/20/静态路由实验/" class="archive-article-date">
-  	<time datetime="2019-09-20T03:59:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/20/静态路由实验/">静态路由实验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/DHCP中继实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T13:48:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/DHCP中继实验/">DHCP中继实验</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/单臂路由实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T13:47:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/单臂路由实验/">单臂路由实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/三层交换实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/三层交换实验/">三层交换实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/IPv6实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/IPv6实验/">IPv6实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/18/DHCP实验/" class="archive-article-date">
-  	<time datetime="2019-09-18T12:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/DHCP实验/">DHCP实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/09/链路聚合实验/" class="archive-article-date">
-  	<time datetime="2019-09-09T07:40:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/09/链路聚合实验/">链路聚合实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2019/09/09/STP实验/" class="archive-article-date">
-  	<time datetime="2019-09-09T07:39:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/09/STP实验/">STP实验</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">H3CNE</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/H3CNE/page/2/">2</a><a class="extend next" rel="next" href="/tags/H3CNE/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -602,9 +401,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
